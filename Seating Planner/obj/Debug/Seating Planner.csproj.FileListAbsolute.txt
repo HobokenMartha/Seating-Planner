@@ -1,0 +1,2 @@
+c:\users\mobrien\documents\visual studio 2012\Projects\Seating Planner\Seating Planner\bin\Debug\Seating Planner.exe.config
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Seating Planner.exe.config

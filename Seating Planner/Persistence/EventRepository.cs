@@ -1,6 +1,6 @@
 ﻿using System;
 using Seating_Planner.Persistence.BaseClasses;
-using Seating_Planner.Model;
+using Seating_Planner.Models;
 
 namespace Seating_Planner.Persistence
 {

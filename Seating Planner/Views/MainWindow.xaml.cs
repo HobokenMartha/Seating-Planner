@@ -25,6 +25,9 @@ namespace Seating_Planner
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Responsible for handling the flyout menu behaviour
+        /// </summary>
         private void Menu_Flyout_Click(object sender, RoutedEventArgs e)
         {
             if (rect.Visibility == System.Windows.Visibility.Collapsed)

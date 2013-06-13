@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Seating_Planner.Model
+namespace Seating_Planner.Models
 {
     using System;
     using System.Data.Entity;

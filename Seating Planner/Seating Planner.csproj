@@ -64,41 +64,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\event_details.cs">
+    <Compile Include="Commands\CommandReference.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Models\event_details.cs">
       <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\guest.cs">
+    <Compile Include="Models\guest.cs">
       <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Persistence\BaseClasses\RepositoryBase.cs" />
     <Compile Include="Persistence\EventRepository.cs" />
     <Compile Include="Persistence\Interfaces\IRepository.cs" />
     <Compile Include="Persistence\TableRepository.cs" />
-    <Compile Include="RelayCommand.cs" />
-    <Compile Include="Model\seat.cs">
+    <Compile Include="Models\seat.cs">
       <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\SeatingPlannerEntityDataModel.Context.cs">
+    <Compile Include="Models\SeatingPlannerEntityDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SeatingPlannerEntityDataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\SeatingPlannerEntityDataModel.cs">
+    <Compile Include="Models\SeatingPlannerEntityDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\SeatingPlannerEntityDataModel.Designer.cs">
+    <Compile Include="Models\SeatingPlannerEntityDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\table.cs">
+    <Compile Include="Models\table.cs">
       <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\TableDetailViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\TableDetailViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -106,7 +108,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -135,22 +137,22 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <EntityDeploy Include="Model\SeatingPlannerEntityDataModel.edmx">
+    <EntityDeploy Include="Models\SeatingPlannerEntityDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SeatingPlannerEntityDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="SeatingPlanner.db">
+    <Content Include="SeatingPlanner.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Model\SeatingPlannerEntityDataModel.Context.tt">
+    </Content>
+    <None Include="Models\SeatingPlannerEntityDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
       <LastGenOutput>SeatingPlannerEntityDataModel.Context.cs</LastGenOutput>
     </None>
-    <None Include="Model\SeatingPlannerEntityDataModel.edmx.diagram">
+    <None Include="Models\SeatingPlannerEntityDataModel.edmx.diagram">
       <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
     </None>
-    <None Include="Model\SeatingPlannerEntityDataModel.tt">
+    <None Include="Models\SeatingPlannerEntityDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
       <LastGenOutput>SeatingPlannerEntityDataModel.cs</LastGenOutput>
@@ -162,9 +164,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

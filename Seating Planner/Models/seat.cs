@@ -15,10 +15,10 @@ namespace Seating_Planner.Models
     public partial class seat
     {
         public int seat_id { get; set; }
-        public int parent_table { get; set; }
         public int event_id { get; set; }
+        public int parent_table { get; set; }
     
-        public virtual table table { get; set; }
         public virtual event_details event_details { get; set; }
+        public virtual table table { get; set; }
     }
 }

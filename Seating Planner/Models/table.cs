@@ -23,7 +23,7 @@ namespace Seating_Planner.Models
         public string table_name { get; set; }
         public int event_id { get; set; }
     
-        public virtual ICollection<seat> seats { get; set; }
         public virtual event_details event_details { get; set; }
+        public virtual ICollection<seat> seats { get; set; }
     }
 }

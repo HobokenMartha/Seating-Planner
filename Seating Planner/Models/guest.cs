@@ -15,11 +15,11 @@ namespace Seating_Planner.Models
     public partial class guest
     {
         public int guest_id { get; set; }
+        public int event_id { get; set; }
         public string title { get; set; }
         public string given_name_1 { get; set; }
         public string given_name_2 { get; set; }
         public string surname { get; set; }
-        public int event_id { get; set; }
     
         public virtual event_details event_details { get; set; }
     }

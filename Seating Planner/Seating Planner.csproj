@@ -67,39 +67,39 @@
     <Compile Include="Commands\CommandReference.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Models\event_details.cs">
-      <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\guest.cs">
-      <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\seat.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\table.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Persistence\BaseClasses\RepositoryBase.cs" />
     <Compile Include="Persistence\EventRepository.cs" />
     <Compile Include="Persistence\Interfaces\IRepository.cs" />
     <Compile Include="Persistence\TableRepository.cs" />
-    <Compile Include="Models\seat.cs">
-      <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SeatingPlannerEntityDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SeatingPlannerEntityDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SeatingPlannerEntityDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SeatingPlannerEntityDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\table.cs">
-      <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\TableDetailViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\BaseClasses\ViewModelBase.cs" />
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -131,32 +131,32 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </None>
+    <None Include="Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <EntityDeploy Include="Models\SeatingPlannerEntityDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SeatingPlannerEntityDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <Content Include="SeatingPlanner.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Models\SeatingPlannerEntityDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>SeatingPlannerEntityDataModel.Context.cs</LastGenOutput>
-    </None>
-    <None Include="Models\SeatingPlannerEntityDataModel.edmx.diagram">
-      <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
-    </None>
-    <None Include="Models\SeatingPlannerEntityDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>SeatingPlannerEntityDataModel.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -13,10 +13,10 @@ namespace Seating_Planner.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SeatingPlannerEntityDataModelContainer : DbContext
+    public partial class SeatingPlannerEntities : DbContext
     {
-        public SeatingPlannerEntityDataModelContainer()
-            : base("name=SeatingPlannerEntityDataModelContainer")
+        public SeatingPlannerEntities()
+            : base("name=SeatingPlannerEntities")
         {
         }
     
@@ -25,9 +25,9 @@ namespace Seating_Planner.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<guest> guests { get; set; }
-        public DbSet<table> tables { get; set; }
-        public DbSet<seat> seats { get; set; }
         public DbSet<event_details> event_details { get; set; }
+        public DbSet<guest> guests { get; set; }
+        public DbSet<seat> seats { get; set; }
+        public DbSet<table> tables { get; set; }
     }
 }

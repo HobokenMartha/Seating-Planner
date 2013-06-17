@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SeatingPlannerModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SeatingPlannerModelStoreContainer">
+          <EntitySet Name="event_details" EntityType="SeatingPlannerModel.Store.event_details" store:Type="Tables" />
+          <EntitySet Name="guest" EntityType="SeatingPlannerModel.Store.guest" store:Type="Tables" />
+          <EntitySet Name="seat" EntityType="SeatingPlannerModel.Store.seat" store:Type="Tables" />
+          <EntitySet Name="table" EntityType="SeatingPlannerModel.Store.table" store:Type="Tables" />
+          <AssociationSet Name="FK_guest_0_0" Association="SeatingPlannerModel.Store.FK_guest_0_0">
+            <End Role="event_details" EntitySet="event_details" />
+            <End Role="guest" EntitySet="guest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_seat_0_0" Association="SeatingPlannerModel.Store.FK_seat_0_0">
+            <End Role="table" EntitySet="table" />
+            <End Role="seat" EntitySet="seat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_seat_1_0" Association="SeatingPlannerModel.Store.FK_seat_1_0">
+            <End Role="event_details" EntitySet="event_details" />
+            <End Role="seat" EntitySet="seat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_table_0_0" Association="SeatingPlannerModel.Store.FK_table_0_0">
+            <End Role="event_details" EntitySet="event_details" />
+            <End Role="table" EntitySet="table" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="event_details">
+          <Key>
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="event_id" Type="int" Nullable="false" />
+          <Property Name="event_name" Type="varchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="guest">
+          <Key>
+            <PropertyRef Name="guest_id" />
+          </Key>
+          <Property Name="guest_id" Type="int" Nullable="false" />
+          <Property Name="event_id" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" />
+          <Property Name="given_name_1" Type="varchar" />
+          <Property Name="given_name_2" Type="varchar" />
+          <Property Name="surname" Type="varchar" />
+        </EntityType>
+        <EntityType Name="seat">
+          <Key>
+            <PropertyRef Name="seat_id" />
+          </Key>
+          <Property Name="seat_id" Type="int" Nullable="false" />
+          <Property Name="event_id" Type="int" Nullable="false" />
+          <Property Name="parent_table" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="table">
+          <Key>
+            <PropertyRef Name="table_id" />
+          </Key>
+          <Property Name="table_id" Type="int" Nullable="false" />
+          <Property Name="table_name" Type="varchar" />
+          <Property Name="event_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_guest_0_0">
+          <End Role="event_details" Type="SeatingPlannerModel.Store.event_details" Multiplicity="1" />
+          <End Role="guest" Type="SeatingPlannerModel.Store.guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="event_details">
+              <PropertyRef Name="event_id" />
+            </Principal>
+            <Dependent Role="guest">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_seat_0_0">
+          <End Role="table" Type="SeatingPlannerModel.Store.table" Multiplicity="1" />
+          <End Role="seat" Type="SeatingPlannerModel.Store.seat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="table">
+              <PropertyRef Name="table_id" />
+            </Principal>
+            <Dependent Role="seat">
+              <PropertyRef Name="parent_table" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_seat_1_0">
+          <End Role="event_details" Type="SeatingPlannerModel.Store.event_details" Multiplicity="1" />
+          <End Role="seat" Type="SeatingPlannerModel.Store.seat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="event_details">
+              <PropertyRef Name="event_id" />
+            </Principal>
+            <Dependent Role="seat">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_table_0_0">
+          <End Role="event_details" Type="SeatingPlannerModel.Store.event_details" Multiplicity="1" />
+          <End Role="table" Type="SeatingPlannerModel.Store.table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="event_details">
+              <PropertyRef Name="event_id" />
+            </Principal>
+            <Dependent Role="table">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SeatingPlannerModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SeatingPlannerEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="event_details" EntityType="SeatingPlannerModel.event_details" />
+          <EntitySet Name="guests" EntityType="SeatingPlannerModel.guest" />
+          <EntitySet Name="seats" EntityType="SeatingPlannerModel.seat" />
+          <EntitySet Name="tables" EntityType="SeatingPlannerModel.table" />
+          <AssociationSet Name="FK_guest_0_0" Association="SeatingPlannerModel.FK_guest_0_0">
+            <End Role="event_details" EntitySet="event_details" />
+            <End Role="guest" EntitySet="guests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_seat_1_0" Association="SeatingPlannerModel.FK_seat_1_0">
+            <End Role="event_details" EntitySet="event_details" />
+            <End Role="seat" EntitySet="seats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_table_0_0" Association="SeatingPlannerModel.FK_table_0_0">
+            <End Role="event_details" EntitySet="event_details" />
+            <End Role="table" EntitySet="tables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_seat_0_0" Association="SeatingPlannerModel.FK_seat_0_0">
+            <End Role="table" EntitySet="tables" />
+            <End Role="seat" EntitySet="seats" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="event_details">
+          <Key>
+            <PropertyRef Name="event_id" />
+          </Key>
+          <Property Name="event_id" Type="Int32" Nullable="false" />
+          <Property Name="event_name" Type="String" Nullable="false" MaxLength="2147483647" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="guests" Relationship="SeatingPlannerModel.FK_guest_0_0" FromRole="event_details" ToRole="guest" />
+          <NavigationProperty Name="seats" Relationship="SeatingPlannerModel.FK_seat_1_0" FromRole="event_details" ToRole="seat" />
+          <NavigationProperty Name="tables" Relationship="SeatingPlannerModel.FK_table_0_0" FromRole="event_details" ToRole="table" />
+        </EntityType>
+        <EntityType Name="guest">
+          <Key>
+            <PropertyRef Name="guest_id" />
+          </Key>
+          <Property Name="guest_id" Type="Int32" Nullable="false" />
+          <Property Name="event_id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="2147483647" Unicode="false" FixedLength="false" />
+          <Property Name="given_name_1" Type="String" MaxLength="2147483647" Unicode="false" FixedLength="false" />
+          <Property Name="given_name_2" Type="String" MaxLength="2147483647" Unicode="false" FixedLength="false" />
+          <Property Name="surname" Type="String" MaxLength="2147483647" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="event_details" Relationship="SeatingPlannerModel.FK_guest_0_0" FromRole="guest" ToRole="event_details" />
+        </EntityType>
+        <EntityType Name="seat">
+          <Key>
+            <PropertyRef Name="seat_id" />
+          </Key>
+          <Property Name="seat_id" Type="Int32" Nullable="false" />
+          <Property Name="event_id" Type="Int32" Nullable="false" />
+          <Property Name="parent_table" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="event_details" Relationship="SeatingPlannerModel.FK_seat_1_0" FromRole="seat" ToRole="event_details" />
+          <NavigationProperty Name="table" Relationship="SeatingPlannerModel.FK_seat_0_0" FromRole="seat" ToRole="table" />
+        </EntityType>
+        <EntityType Name="table">
+          <Key>
+            <PropertyRef Name="table_id" />
+          </Key>
+          <Property Name="table_id" Type="Int32" Nullable="false" />
+          <Property Name="table_name" Type="String" MaxLength="2147483647" Unicode="false" FixedLength="false" />
+          <Property Name="event_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="event_details" Relationship="SeatingPlannerModel.FK_table_0_0" FromRole="table" ToRole="event_details" />
+          <NavigationProperty Name="seats" Relationship="SeatingPlannerModel.FK_seat_0_0" FromRole="table" ToRole="seat" />
+        </EntityType>
+        <Association Name="FK_guest_0_0">
+          <End Role="event_details" Type="SeatingPlannerModel.event_details" Multiplicity="1" />
+          <End Role="guest" Type="SeatingPlannerModel.guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="event_details">
+              <PropertyRef Name="event_id" />
+            </Principal>
+            <Dependent Role="guest">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_seat_1_0">
+          <End Role="event_details" Type="SeatingPlannerModel.event_details" Multiplicity="1" />
+          <End Role="seat" Type="SeatingPlannerModel.seat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="event_details">
+              <PropertyRef Name="event_id" />
+            </Principal>
+            <Dependent Role="seat">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_table_0_0">
+          <End Role="event_details" Type="SeatingPlannerModel.event_details" Multiplicity="1" />
+          <End Role="table" Type="SeatingPlannerModel.table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="event_details">
+              <PropertyRef Name="event_id" />
+            </Principal>
+            <Dependent Role="table">
+              <PropertyRef Name="event_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_seat_0_0">
+          <End Role="table" Type="SeatingPlannerModel.table" Multiplicity="1" />
+          <End Role="seat" Type="SeatingPlannerModel.seat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="table">
+              <PropertyRef Name="table_id" />
+            </Principal>
+            <Dependent Role="seat">
+              <PropertyRef Name="parent_table" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SeatingPlannerModelStoreContainer" CdmEntityContainer="SeatingPlannerEntities">
+          <EntitySetMapping Name="event_details">
+            <EntityTypeMapping TypeName="SeatingPlannerModel.event_details">
+              <MappingFragment StoreEntitySet="event_details">
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+                <ScalarProperty Name="event_name" ColumnName="event_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="guests">
+            <EntityTypeMapping TypeName="SeatingPlannerModel.guest">
+              <MappingFragment StoreEntitySet="guest">
+                <ScalarProperty Name="guest_id" ColumnName="guest_id" />
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="given_name_1" ColumnName="given_name_1" />
+                <ScalarProperty Name="given_name_2" ColumnName="given_name_2" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seats">
+            <EntityTypeMapping TypeName="SeatingPlannerModel.seat">
+              <MappingFragment StoreEntitySet="seat">
+                <ScalarProperty Name="seat_id" ColumnName="seat_id" />
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+                <ScalarProperty Name="parent_table" ColumnName="parent_table" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tables">
+            <EntityTypeMapping TypeName="SeatingPlannerModel.table">
+              <MappingFragment StoreEntitySet="table">
+                <ScalarProperty Name="table_id" ColumnName="table_id" />
+                <ScalarProperty Name="table_name" ColumnName="table_name" />
+                <ScalarProperty Name="event_id" ColumnName="event_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

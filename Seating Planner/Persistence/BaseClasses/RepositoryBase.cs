@@ -10,7 +10,6 @@ namespace Seating_Planner.Persistence.BaseClasses
 {
     public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
-
         #region Properties
         
         private ObjectContext m_ObjectContext;
@@ -23,7 +22,18 @@ namespace Seating_Planner.Persistence.BaseClasses
 
         protected RepositoryBase(string filePath, Type contextType, string edm)
         {
+            // Create object context and object set
+            m_ObjectContext = this.CreateObjectContext(filePath, contextType, edm);
+            m_ObjectSet = m_ObjectContext.CreateObjectSet<T>();
+            m_UsingSharedObjectContext = false;
+        }
 
+        protected RepositoryBase(ObjectContext objectContext)
+        {
+            // Create object set
+            m_ObjectContext = objectContext;
+            m_ObjectSet = m_ObjectContext.CreateObjectSet<T>();
+            m_UsingSharedObjectContext = true;
         }
 
         #endregion

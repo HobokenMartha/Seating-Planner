@@ -9,7 +9,7 @@ namespace Seating_Planner.Persistence
         #region Fields
 
         private static Type m_ContextType = typeof(table);
-        private static string m_Edm = "Model.SeatingPlannerEntityDataModel";
+        private static string m_Edm = "Model.Model";
 
         #endregion
 

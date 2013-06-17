@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Shapes;
 using System.Linq;
@@ -14,6 +15,9 @@ namespace Seating_Planner.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private event_details p_CurrentEvent;
+        private ObservableCollection<table> p_Tables;
+
         public static readonly DependencyProperty FlyoutButtonProperty =
             DependencyProperty.RegisterAttached("FlyoutButton", typeof(Button), typeof(MainWindowViewModel), new FrameworkPropertyMetadata(OnFlyoutButtonClick));
 
@@ -36,11 +40,45 @@ namespace Seating_Planner.ViewModels
             }
         }
 
+        public MainWindowViewModel()
+        {
+
+        }
+
+        public event_details currentEvent
+        {
+            get
+            {
+                return p_CurrentEvent;
+            }
+            set
+            {
+                base.RaisePropertyChangingEvent("currentEvent");
+                p_CurrentEvent = value;
+                base.RaisePropertyChangedEvent("currentEvent");
+            }
+        }
+
+        public ObservableCollection<table> Tables
+        {
+            get
+            {
+                return p_Tables;
+            }
+            set
+            {
+                base.RaisePropertyChangingEvent("Tables");
+                p_Tables = value;
+                base.RaisePropertyChangedEvent("Tables");
+            }
+        }
+
         private void Flyout()
         {
             // Implement the flyout menu functionality
             if (r != null)
             {
+                
                 if (r.Visibility == System.Windows.Visibility.Collapsed)
                 {
                     r.Visibility = System.Windows.Visibility.Visible;

@@ -15,20 +15,32 @@ namespace Seating_Planner.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        #region Properties
+
         private event_details p_CurrentEvent;
+        private ObservableCollection<event_details> p_AllEvents;
         private ObservableCollection<table> p_Tables;
 
         public static readonly DependencyProperty FlyoutButtonProperty =
             DependencyProperty.RegisterAttached("FlyoutButton", typeof(Button), typeof(MainWindowViewModel), new FrameworkPropertyMetadata(OnFlyoutButtonClick));
 
+        private DelegateCommand flyoutCommand;
+
         private static Rectangle r = null;
+
+        #endregion
 
         public static void OnFlyoutButtonClick(DependencyObject obj, DependencyPropertyChangedEventArgs args)
         {
             r = obj as Rectangle;
         }
 
-        private DelegateCommand flyoutCommand;
+        #region Command Properties
+
+        public ICommand LoadEvents { get; set; }
+
+        #endregion
+
         public ICommand FlyoutCommand
         {
             get
@@ -40,9 +52,30 @@ namespace Seating_Planner.ViewModels
             }
         }
 
+        #region Constructors
+
         public MainWindowViewModel()
         {
+            this.Initialise();
+        }
 
+        #endregion
+
+        #region Data Properties
+
+        public ObservableCollection<event_details> allEvents
+        {
+            get
+            {
+                return p_AllEvents;
+            }
+
+            set
+            {
+                base.RaisePropertyChangingEvent("allEvents");
+                p_AllEvents = value;
+                base.RaisePropertyChangedEvent("allEvents");
+            }
         }
 
         public event_details currentEvent
@@ -73,6 +106,30 @@ namespace Seating_Planner.ViewModels
             }
         }
 
+        #endregion
+
+        #region Event Handlers
+
+        void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                default:
+                    break;
+            }
+        }
+
+        void OnPropertyChanging(object sender, System.ComponentModel.PropertyChangingEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                default:
+                    break;
+            }
+        }
+
+        #endregion
+
         private void Flyout()
         {
             // Implement the flyout menu functionality
@@ -90,6 +147,13 @@ namespace Seating_Planner.ViewModels
                     //(sender as Button).Content = ">";
                 }
             }
+        }
+
+        private void Initialise()
+        {
+            this.PropertyChanging += OnPropertyChanging;
+            this.PropertyChanged += OnPropertyChanged;
+            this.LoadEvents = new LoadEventCommand(this);
         }
     }
 }

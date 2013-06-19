@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Seating_Planner.ViewModels;
 
 namespace Seating_Planner
 {
@@ -23,7 +24,18 @@ namespace Seating_Planner
         public MainWindow()
         {
             InitializeComponent();
+            Initialise();
         }
+
+        #region Event Handlers
+
+        void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            // Subscribe to ViewModel events
+            var viewModel = (MainWindowViewModel)this.DataContext;
+        }
+
+        #endregion
 
         /// <summary>
         /// Responsible for handling the flyout menu behaviour
@@ -40,6 +52,14 @@ namespace Seating_Planner
                 rect.Visibility = System.Windows.Visibility.Collapsed;
                 (sender as Button).Content = ">";
             }
+        }
+
+        /// <summary>
+        /// Init custom window elements
+        /// </summary>
+        private void Initialise()
+        {
+            this.DataContextChanged += OnDataContextChanged;
         }
     }
 }

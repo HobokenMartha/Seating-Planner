@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.EntityClient;
+using System.Data.Entity;
 using System.Data.Objects;
 using System.Linq;
 using System.Linq.Expressions;
+using Seating_Planner.Persistence;
 using Seating_Planner.Persistence.Interfaces;
 
 namespace Seating_Planner.Persistence.BaseClasses
@@ -11,29 +13,20 @@ namespace Seating_Planner.Persistence.BaseClasses
     public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         #region Properties
-        
-        private ObjectContext m_ObjectContext;
-        private IObjectSet<T> m_ObjectSet;
+                
+        private DbContext m_DBContext;
+        private DbSet<T> m_DBSet;
         private bool m_UsingSharedObjectContext;
 
         #endregion
 
         #region Constructors
 
-        protected RepositoryBase(string filePath, Type contextType, string edm)
+        protected RepositoryBase(IDBContextFactory context)
         {
-            // Create object context and object set
-            m_ObjectContext = this.CreateObjectContext(filePath, contextType, edm);
-            m_ObjectSet = m_ObjectContext.CreateObjectSet<T>();
+            m_DBContext = context.GetDBContext();
+            m_DBSet = m_DBContext.Set<T>();
             m_UsingSharedObjectContext = false;
-        }
-
-        protected RepositoryBase(ObjectContext objectContext)
-        {
-            // Create object set
-            m_ObjectContext = objectContext;
-            m_ObjectSet = m_ObjectContext.CreateObjectSet<T>();
-            m_UsingSharedObjectContext = true;
         }
 
         #endregion
@@ -46,7 +39,8 @@ namespace Seating_Planner.Persistence.BaseClasses
             {
                 throw new ArgumentNullException("entity");
             }
-            m_ObjectSet.AddObject(entity);
+            m_DBSet.Add(entity);
+            SaveChanges();
         }
 
         public void Attach(T entity)
@@ -55,24 +49,24 @@ namespace Seating_Planner.Persistence.BaseClasses
             {
                 throw new ArgumentNullException("entity");
             }
-            m_ObjectSet.Attach(entity);
+            m_DBSet.Attach(entity);
         }
 
-        public void Delete(T entity)
+        public void Remove(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
-            m_ObjectSet.DeleteObject(entity);
+            m_DBSet.Remove(entity);
         }
 
-        public void Delete(Expression<Func<T, bool>> predicate)
+        public void Remove(Expression<Func<T, bool>> predicate)
         {
-            var records = from x in m_ObjectSet.Where(predicate) select x;
+            var records = from x in m_DBSet.Where(predicate) select x;
             foreach (T record in records)
             {
-                m_ObjectSet.DeleteObject(record);
+                m_DBSet.Remove(record);
             }
         }
 
@@ -94,56 +88,50 @@ namespace Seating_Planner.Persistence.BaseClasses
         public IQueryable<T> Fetch()
         {
             // Get object set
-            var objectSet = m_ObjectSet;
+            var dbset = m_DBSet;
 
-            return objectSet;
+            return dbset;
         }
 
         public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
         {
             // Get object set
-            var objectSet = m_ObjectSet.Where(predicate);
+            var dbset = m_DBSet.Where(predicate);
 
-            return objectSet;
+            return dbset;
         }
 
         public T First(Expression<Func<T, bool>> predicate)
         {
             // Get object set
-            var objectSet = m_ObjectSet.First(predicate);
+            var dbset = m_DBSet.First(predicate);
 
             // Set return value
-            return objectSet;
+            return dbset;
         }
 
         public IEnumerable<T> GetAll()
         {
             // Get object set
-            var objectSet = Fetch().AsEnumerable();
+            var dbset = Fetch().AsEnumerable();
 
             // Set return value
-            return objectSet;
+            return dbset;
         }
 
         public void SaveChanges()
         {
             // Save changes
-            m_ObjectContext.SaveChanges();
-        }
-
-        public void SaveChanges(SaveOptions options)
-        {
-            // Save changes
-            m_ObjectContext.SaveChanges(options);
+            m_DBContext.SaveChanges();
         }
 
         public T Single(Expression<Func<T, bool>> predicate)
         {
             // Get object set
-            var objectSet = m_ObjectSet.Single(predicate);
+            var dbset = m_DBSet.Single(predicate);
 
             // Set return value
-            return objectSet;
+            return dbset;
         }        
 
         #endregion
@@ -154,71 +142,19 @@ namespace Seating_Planner.Persistence.BaseClasses
         {
             if (!disposing) return;
 
-            if (m_ObjectContext == null) return;
+            if (m_DBContext == null) return;
 
-            m_ObjectContext.Dispose();
-            m_ObjectContext = null;
+            m_DBContext.Dispose();
+            m_DBContext = null;
         }
 
         #endregion
 
         #region Private Methods
 
-        private ObjectContext CreateObjectContext(string filePath, Type contextType, string edm)
+        private DbContext CreateDBContext()
         {
-            if (edm == null)
-            {
-                throw new ArgumentNullException("EDM");
-            }
-
-            if (filePath == null)
-            {
-                throw new ArgumentNullException("filePath");
-            }
-
-            var connectionString = string.Format("Data Source={0}", filePath);
-            var Builder = new EntityConnectionStringBuilder();
-
-            // Configure Builder
-            Builder.Metadata = string.Format("res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl",
-                edm);
-            Builder.Provider = "System.Data.SQLite";
-            Builder.ProviderConnectionString = connectionString;
-            var edmConnectionString = Builder.ToString();
-
-            // Create an EDM connection
-            EntityConnection edmConnection;
-            try
-            {
-                edmConnection = new EntityConnection(edmConnectionString);
-
-            }
-            catch (Exception e)
-            {
-                // Rethrow exception
-                throw;
-            }
-
-            /* EF ObjectContext objects are typed to the specific EDM that they
-             * represent. The context type is injected into the constructor of
-             * this class, and we use the System.Activator.CreateInstance() 
-             * method to instantiate an object of that type. */
-
-            // Get the object context
-            object objectContext;
-            try
-            {
-                objectContext = Activator.CreateInstance(contextType, edmConnection);
-            }
-            catch (Exception e)
-            {
-                // Rethrow exception
-                throw;
-            }
-
-            // Set return value
-            return (ObjectContext)objectContext;
-
+            return m_DBContext;
         }
 
         #endregion

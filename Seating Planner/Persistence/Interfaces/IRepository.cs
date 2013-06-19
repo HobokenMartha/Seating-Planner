@@ -14,9 +14,8 @@ namespace Seating_Planner.Persistence.Interfaces
         T Single(Expression<Func<T, bool>> predicate);
         T First(Expression<Func<T, bool>> predicate);
         void Add(T entity);
-        void Delete(T entity);
+        void Remove(T entity);
         void Attach(T entity);
         void SaveChanges();
-        void SaveChanges(SaveOptions options);
     }
 }

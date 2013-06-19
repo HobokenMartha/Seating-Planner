@@ -1,22 +1,17 @@
 ﻿using System;
 using Seating_Planner.Persistence.BaseClasses;
+using Seating_Planner.Persistence.Interfaces;
+using Seating_Planner.Persistence;
 using Seating_Planner.Models;
 
 namespace Seating_Planner.Persistence
 {
-    public class TableRepository : RepositoryBase<table>
+    public class TableRepository : RepositoryBase<table>, ITableRepository
     {
-        #region Fields
-
-        private static Type m_ContextType = typeof(table);
-        private static string m_Edm = "Model.Model";
-
-        #endregion
-
         #region Constructors
 
-        public TableRepository(string filePath)
-            : base(filePath, m_ContextType, m_Edm)
+        public TableRepository(IDBContextFactory context)
+            : base(context)
         {
         }
 

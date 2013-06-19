@@ -6,11 +6,11 @@ using Seating_Planner.Models;
 
 namespace Seating_Planner.Persistence
 {
-    public class EventRepository : RepositoryBase<event_detail>, IEventRepository
+    public class SeatRepository : RepositoryBase<seat>, ISeatRepository
     {
         #region Constructors
 
-        public EventRepository(IDBContextFactory context)
+        public SeatRepository(IDBContextFactory context)
             : base(context)
         {
         }

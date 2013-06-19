@@ -12,9 +12,9 @@ namespace Seating_Planner.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class event_details
+    public partial class event_detail
     {
-        public event_details()
+        public event_detail()
         {
             this.guests = new HashSet<guest>();
             this.seats = new HashSet<seat>();

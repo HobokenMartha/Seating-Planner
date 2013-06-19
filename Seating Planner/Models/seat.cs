@@ -18,7 +18,7 @@ namespace Seating_Planner.Models
         public int event_id { get; set; }
         public int parent_table { get; set; }
     
-        public virtual event_details event_details { get; set; }
         public virtual table table { get; set; }
+        public virtual event_detail event_detail { get; set; }
     }
 }

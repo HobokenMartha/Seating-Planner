@@ -17,8 +17,8 @@ namespace Seating_Planner.ViewModels
     {
         #region Properties
 
-        private event_details p_CurrentEvent;
-        private ObservableCollection<event_details> p_AllEvents;
+        private event_detail p_CurrentEvent;
+        private ObservableCollection<event_detail> p_AllEvents;
         private ObservableCollection<table> p_Tables;
 
         public static readonly DependencyProperty FlyoutButtonProperty =
@@ -63,7 +63,7 @@ namespace Seating_Planner.ViewModels
 
         #region Data Properties
 
-        public ObservableCollection<event_details> allEvents
+        public ObservableCollection<event_detail> allEvents
         {
             get
             {
@@ -78,7 +78,7 @@ namespace Seating_Planner.ViewModels
             }
         }
 
-        public event_details currentEvent
+        public event_detail currentEvent
         {
             get
             {

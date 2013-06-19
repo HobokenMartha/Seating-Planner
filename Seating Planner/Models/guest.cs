@@ -21,6 +21,6 @@ namespace Seating_Planner.Models
         public string given_name_2 { get; set; }
         public string surname { get; set; }
     
-        public virtual event_details event_details { get; set; }
+        public virtual event_detail event_detail { get; set; }
     }
 }

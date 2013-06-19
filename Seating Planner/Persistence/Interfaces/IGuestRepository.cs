@@ -7,7 +7,7 @@ using Seating_Planner.Models;
 
 namespace Seating_Planner.Persistence.Interfaces
 {
-    public interface IEventRepository : IRepository<event_detail>
+    public interface IGuestRepository : IRepository<guest>
     {
     }
 }

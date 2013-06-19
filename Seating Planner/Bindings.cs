@@ -18,6 +18,7 @@ namespace Seating_Planner
             //Bind interfaces to implementations here
             Bind<IDBContextFactory>().To<DBContextFactory>();
             Bind<IEventRepository>().To<EventRepository>();
+            Bind<ITableRepository>().To<TableRepository>();
         }
     }
 }

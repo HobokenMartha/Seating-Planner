@@ -6,7 +6,7 @@ using Seating_Planner.Models;
 
 namespace Seating_Planner.Persistence
 {
-    public class EventRepository : RepositoryBase<event_details>, IEventRepository
+    public class EventRepository : RepositoryBase<event_detail>, IEventRepository
     {
         #region Constructors
 

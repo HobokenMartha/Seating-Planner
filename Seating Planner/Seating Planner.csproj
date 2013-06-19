@@ -71,7 +71,7 @@
     <Compile Include="Commands\CommandReference.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\LoadEventCommand.cs" />
-    <Compile Include="Models\event_details.cs">
+    <Compile Include="Models\event_detail.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\guest.cs">

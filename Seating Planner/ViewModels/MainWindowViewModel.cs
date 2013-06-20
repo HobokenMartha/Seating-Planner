@@ -13,6 +13,7 @@ using Seating_Planner.Commands;
 
 namespace Seating_Planner.ViewModels
 {
+    //TODO: I've been looking here: http://astoundingprogramming.wordpress.com/2012/02/23/mvvm-light-is-cool-viewmodellocator-sucks/ for info on opening windows using MVVM
     public class MainWindowViewModel : ViewModelBase
     {
         #region Properties

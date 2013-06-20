@@ -14,5 +14,6 @@
         <Rectangle Name="rect" Width="150" VerticalAlignment="Stretch" Fill="#99000000" Visibility="Collapsed"/>
         <Button Name="FlyoutButton" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="32" Height="32" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" RenderTransformOrigin="0.388,-2.642" Command="{Binding FlyoutCommand}">&gt;</Button>
         <Button Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="351,216,0,0" VerticalAlignment="Top" Width="75" Command="{Binding LoadEvents}" />
+        <Button Content="Load Events" Grid.Column="1" HorizontalAlignment="Left" Margin="351,256,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

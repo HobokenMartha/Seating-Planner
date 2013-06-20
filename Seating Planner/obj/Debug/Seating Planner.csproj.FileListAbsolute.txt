@@ -19,5 +19,6 @@ C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating P
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Seating Planner_MarkupCompile.lref
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Ninject.dll
-C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Ninject.pdb
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Ninject.xml
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\LoadEvent.g.cs
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\LoadEvent.baml

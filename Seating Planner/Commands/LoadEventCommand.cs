@@ -54,7 +54,7 @@ namespace Seating_Planner.Commands
             }
 
             m_ViewModel.allEvents = allEvents;
-
+ 
         }
 
         #endregion

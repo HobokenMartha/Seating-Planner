@@ -122,19 +122,19 @@
             <End Role="seat" EntitySet="seats" />
           </AssociationSet>
           <EntitySet Name="event_detail" EntityType="SeatingPlannerModel.event_detail" />
-          <AssociationSet Name="FK_guest_0_01" Association="SeatingPlannerModel.FK_guest_0_01">
+          <AssociationSet Name="FK_guest_0_0" Association="SeatingPlannerModel.FK_guest_0_0">
             <End Role="event_detail" EntitySet="event_detail" />
             <End Role="guest" EntitySet="guests" />
           </AssociationSet>
-          <AssociationSet Name="FK_seat_1_01" Association="SeatingPlannerModel.FK_seat_1_01">
+          <AssociationSet Name="FK_seat_1_0" Association="SeatingPlannerModel.FK_seat_1_0">
             <End Role="event_detail" EntitySet="event_detail" />
             <End Role="seat" EntitySet="seats" />
           </AssociationSet>
-          <AssociationSet Name="FK_table_0_01" Association="SeatingPlannerModel.FK_table_0_01">
+          <AssociationSet Name="FK_table_0_0" Association="SeatingPlannerModel.FK_table_0_0">
             <End Role="event_detail" EntitySet="event_detail" />
             <End Role="table" EntitySet="tables" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="guest">
           <Key>
             <PropertyRef Name="guest_id" />
@@ -145,7 +145,7 @@
           <Property Name="given_name_1" Type="String" MaxLength="2147483647" Unicode="false" FixedLength="false" />
           <Property Name="given_name_2" Type="String" MaxLength="2147483647" Unicode="false" FixedLength="false" />
           <Property Name="surname" Type="String" MaxLength="2147483647" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="event_detail" Relationship="SeatingPlannerModel.FK_guest_0_01" FromRole="guest" ToRole="event_detail" />
+          <NavigationProperty Name="event_detail" Relationship="SeatingPlannerModel.FK_guest_0_0" FromRole="guest" ToRole="event_detail" />
         </EntityType>
         <EntityType Name="seat">
           <Key>
@@ -155,7 +155,7 @@
           <Property Name="event_id" Type="Int32" Nullable="false" />
           <Property Name="parent_table" Type="Int32" Nullable="false" />
           <NavigationProperty Name="table" Relationship="SeatingPlannerModel.FK_seat_0_0" FromRole="seat" ToRole="table" />
-          <NavigationProperty Name="event_detail" Relationship="SeatingPlannerModel.FK_seat_1_01" FromRole="seat" ToRole="event_detail" />
+          <NavigationProperty Name="event_detail" Relationship="SeatingPlannerModel.FK_seat_1_0" FromRole="seat" ToRole="event_detail" />
         </EntityType>
         <EntityType Name="table">
           <Key>
@@ -165,7 +165,7 @@
           <Property Name="table_name" Type="String" MaxLength="2147483647" Unicode="false" FixedLength="false" />
           <Property Name="event_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="seats" Relationship="SeatingPlannerModel.FK_seat_0_0" FromRole="table" ToRole="seat" />
-          <NavigationProperty Name="event_detail" Relationship="SeatingPlannerModel.FK_table_0_01" FromRole="table" ToRole="event_detail" />
+          <NavigationProperty Name="event_detail" Relationship="SeatingPlannerModel.FK_table_0_0" FromRole="table" ToRole="event_detail" />
         </EntityType>
         <Association Name="FK_seat_0_0">
           <End Role="table" Type="SeatingPlannerModel.table" Multiplicity="1" />
@@ -185,11 +185,14 @@
           </Key>
           <Property Type="Int32" Name="event_id" Nullable="false" />
           <Property Type="String" Name="event_name" Nullable="false" MaxLength="2147483647" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="guests" Relationship="SeatingPlannerModel.FK_guest_0_01" FromRole="event_detail" ToRole="guest" />
-          <NavigationProperty Name="seats" Relationship="SeatingPlannerModel.FK_seat_1_01" FromRole="event_detail" ToRole="seat" />
-          <NavigationProperty Name="tables" Relationship="SeatingPlannerModel.FK_table_0_01" FromRole="event_detail" ToRole="table" />
+          <NavigationProperty Name="guests" Relationship="SeatingPlannerModel.FK_guest_0_0" FromRole="event_detail" ToRole="guest" />
+          <NavigationProperty Name="seats" Relationship="SeatingPlannerModel.FK_seat_1_0" FromRole="event_detail" ToRole="seat" />
+          <NavigationProperty Name="tables" Relationship="SeatingPlannerModel.FK_table_0_0" FromRole="event_detail" ToRole="table" />
+          <Property Type="String" Name="event_details" Nullable="false" />
+          <Property Type="DateTime" Name="date_time_created" Nullable="false" />
+          <Property Type="DateTime" Name="date_time_updated" Nullable="false" />
         </EntityType>
-        <Association Name="FK_guest_0_01">
+        <Association Name="FK_guest_0_0">
           <End Type="SeatingPlannerModel.event_detail" Role="event_detail" Multiplicity="1" />
           <End Type="SeatingPlannerModel.guest" Role="guest" Multiplicity="*" />
           <ReferentialConstraint>
@@ -201,7 +204,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_seat_1_01">
+        <Association Name="FK_seat_1_0">
           <End Type="SeatingPlannerModel.event_detail" Role="event_detail" Multiplicity="1" />
           <End Type="SeatingPlannerModel.seat" Role="seat" Multiplicity="*" />
           <ReferentialConstraint>
@@ -213,7 +216,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_table_0_01">
+        <Association Name="FK_table_0_0">
           <End Type="SeatingPlannerModel.event_detail" Role="event_detail" Multiplicity="1" />
           <End Type="SeatingPlannerModel.table" Role="table" Multiplicity="*" />
           <ReferentialConstraint>
@@ -225,7 +228,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

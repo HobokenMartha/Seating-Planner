@@ -47,6 +47,7 @@ namespace Seating_Planner.Commands
             var eventList = eventRepository.GetAll();
 
             ObservableCollection<event_detail> allEvents = new ObservableCollection<event_detail>();
+            
             foreach (var e in eventList)
             {
                 allEvents.Add(e);

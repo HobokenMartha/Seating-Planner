@@ -24,8 +24,6 @@ namespace Seating_Planner.Models
         public int event_id { get; set; }
         public string event_name { get; set; }
         public string event_details { get; set; }
-        public System.DateTime date_time_created { get; set; }
-        public System.DateTime date_time_updated { get; set; }
     
         public virtual ICollection<guest> guests { get; set; }
         public virtual ICollection<seat> seats { get; set; }

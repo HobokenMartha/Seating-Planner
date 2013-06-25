@@ -27,9 +27,6 @@
             <End Role="table" EntitySet="table" />
           </AssociationSet>
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6005: The data type 'date' is currently not supported for the target .NET Framework version; the column 'date_time_created' in table 'main.event_detail' was excluded.
-      -->
         <EntityType Name="event_detail">
           <Key>
             <PropertyRef Name="event_id" />
@@ -37,6 +34,8 @@
           <Property Name="event_id" Type="int" Nullable="false" />
           <Property Name="event_name" Type="varchar" Nullable="false" />
           <Property Name="event_details" Type="varchar" />
+          <Property Name="date_time_created" Type="datetime" Nullable="false" />
+          <Property Name="date_time_updated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="guest">
           <Key>
@@ -193,6 +192,8 @@
           <NavigationProperty Name="seats" Relationship="SeatingPlannerModel.FK_seat_1_0" FromRole="event_detail" ToRole="seat" />
           <NavigationProperty Name="tables" Relationship="SeatingPlannerModel.FK_table_0_0" FromRole="event_detail" ToRole="table" />
           <Property Type="String" Name="event_details" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="date_time_created" Nullable="false" />
+          <Property Type="DateTime" Name="date_time_updated" Nullable="false" />
         </EntityType>
         <Association Name="FK_guest_0_0">
           <End Type="SeatingPlannerModel.event_detail" Role="event_detail" Multiplicity="1" />
@@ -272,6 +273,8 @@
                 <ScalarProperty Name="event_details" ColumnName="event_details" />
                 <ScalarProperty Name="event_name" ColumnName="event_name" />
                 <ScalarProperty Name="event_id" ColumnName="event_id" />
+                <ScalarProperty Name="date_time_created" ColumnName="date_time_created"/>
+                <ScalarProperty Name="date_time_updated" ColumnName="date_time_updated"/>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

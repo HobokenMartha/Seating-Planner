@@ -35,7 +35,8 @@
           <Property Name="event_name" Type="varchar" Nullable="false" />
           <Property Name="event_details" Type="varchar" />
           <Property Name="date_time_created" Type="datetime" Nullable="false" />
-          <Property Name="date_time_updated" Type="datetime" Nullable="false" />
+          <Property Name="date_time_updated" Type="datetime" Nullable="true" />
+          <Property Name="date_time_deleted" Type="datetime" Nullable="true" />
         </EntityType>
         <EntityType Name="guest">
           <Key>
@@ -193,7 +194,8 @@
           <NavigationProperty Name="tables" Relationship="SeatingPlannerModel.FK_table_0_0" FromRole="event_detail" ToRole="table" />
           <Property Type="String" Name="event_details" MaxLength="2147483647" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="date_time_created" Nullable="false" />
-          <Property Type="DateTime" Name="date_time_updated" Nullable="false" />
+          <Property Type="DateTime" Name="date_time_updated" Nullable="true" />
+          <Property Type="DateTime" Name="date_time_deleted" Nullable="true" />
         </EntityType>
         <Association Name="FK_guest_0_0">
           <End Type="SeatingPlannerModel.event_detail" Role="event_detail" Multiplicity="1" />
@@ -275,6 +277,7 @@
                 <ScalarProperty Name="event_id" ColumnName="event_id" />
                 <ScalarProperty Name="date_time_created" ColumnName="date_time_created"/>
                 <ScalarProperty Name="date_time_updated" ColumnName="date_time_updated"/>
+                <ScalarProperty Name="date_time_deleted" ColumnName="date_time_deleted"/>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -21,3 +21,5 @@ C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating P
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\LoadEvent.g.cs
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\LoadEvent.baml
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\SeatingPlanner.db
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\CreateEventWindow.g.cs
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\CreateEventWindow.baml

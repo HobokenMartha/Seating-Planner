@@ -41,20 +41,18 @@ namespace Seating_Planner.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parameter">Should be of type event_detail</param>
         public void Execute(object parameter)
         {
             var eventRepository = new EventRepository(factory);
-            var eventList = eventRepository.GetAll();
+            event_detail toSearchFor = (event_detail)parameter;
+            event_detail theEvent = eventRepository
+                .Single(c => c.event_id.Equals(toSearchFor.event_id));
 
-            ObservableCollection<event_detail> allEvents = new ObservableCollection<event_detail>();
-            
-            foreach (var e in eventList)
-            {
-                allEvents.Add(e);
-            }
-
-            m_ViewModel.allEvents = allEvents;
- 
+            m_ViewModel.Event = theEvent;
         }
 
         #endregion

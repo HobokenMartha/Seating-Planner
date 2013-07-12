@@ -11,6 +11,9 @@ using Seating_Planner.Persistence;
 
 namespace Seating_Planner
 {
+    /// <summary>
+    /// Ninject Bindings
+    /// </summary>
     public class Bindings : NinjectModule
     {
         public override void Load()

@@ -46,11 +46,13 @@ namespace Seating_Planner
             {
                 rect.Visibility = System.Windows.Visibility.Visible;
                 (sender as Button).Content = "<";
+                (sender as Button).ToolTip = "Hide Menu";
             }
             else
             {
                 rect.Visibility = System.Windows.Visibility.Collapsed;
                 (sender as Button).Content = ">";
+                (sender as Button).ToolTip = "View Menu";
             }
         }
 

@@ -112,10 +112,15 @@
     <Compile Include="Persistence\SeatRepository.cs" />
     <Compile Include="Persistence\TableRepository.cs" />
     <Compile Include="Services\Interfaces\IUIControllerService.cs" />
+    <Compile Include="ViewModels\CreateEventViewModel.cs" />
     <Compile Include="ViewModels\LoadEventViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\TableDetailViewModel.cs" />
     <Compile Include="ViewModels\BaseClasses\ViewModelBase.cs" />
+    <Page Include="Views\CreateEventWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoadEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -127,6 +132,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\CreateEventWindow.xaml.cs">
+      <DependentUpon>CreateEventWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoadEvent.xaml.cs">
       <DependentUpon>LoadEvent.xaml</DependentUpon>

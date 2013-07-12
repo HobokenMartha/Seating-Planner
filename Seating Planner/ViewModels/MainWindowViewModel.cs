@@ -18,40 +18,21 @@ namespace Seating_Planner.ViewModels
     {
         #region Properties
 
-        private event_detail p_CurrentEvent;
-        private ObservableCollection<event_detail> p_AllEvents;
+        private event_detail p_Event;
         private ObservableCollection<table> p_Tables;
-
-        public static readonly DependencyProperty FlyoutButtonProperty =
-            DependencyProperty.RegisterAttached("FlyoutButton", typeof(Button), typeof(MainWindowViewModel), new FrameworkPropertyMetadata(OnFlyoutButtonClick));
-
-        private DelegateCommand flyoutCommand;
-
-        private static Rectangle r = null;
+        private ObservableCollection<seat> p_seats;
+        private ObservableCollection<guest> p_Guests;
 
         #endregion
-
-        public static void OnFlyoutButtonClick(DependencyObject obj, DependencyPropertyChangedEventArgs args)
-        {
-            r = obj as Rectangle;
-        }
 
         #region Command Properties
 
+        /// <summary>
+        /// ICommand to LoadEvents
+        /// </summary>
         public ICommand LoadEvents { get; set; }
 
         #endregion
-
-        public ICommand FlyoutCommand
-        {
-            get
-            {
-                if (flyoutCommand == null)
-                    flyoutCommand = new DelegateCommand(Flyout);
-
-                return flyoutCommand;
-            }
-        }
 
         #region Constructors
 
@@ -64,32 +45,17 @@ namespace Seating_Planner.ViewModels
 
         #region Data Properties
 
-        public ObservableCollection<event_detail> allEvents
+        public event_detail Event
         {
             get
             {
-                return p_AllEvents;
-            }
-
-            set
-            {
-                base.RaisePropertyChangingEvent("allEvents");
-                p_AllEvents = value;
-                base.RaisePropertyChangedEvent("allEvents");
-            }
-        }
-
-        public event_detail currentEvent
-        {
-            get
-            {
-                return p_CurrentEvent;
+                return p_Event;
             }
             set
             {
-                base.RaisePropertyChangingEvent("currentEvent");
-                p_CurrentEvent = value;
-                base.RaisePropertyChangedEvent("currentEvent");
+                base.RaisePropertyChangingEvent("Event");
+                p_Event = value;
+                base.RaisePropertyChangedEvent("Event");
             }
         }
 
@@ -104,6 +70,34 @@ namespace Seating_Planner.ViewModels
                 base.RaisePropertyChangingEvent("Tables");
                 p_Tables = value;
                 base.RaisePropertyChangedEvent("Tables");
+            }
+        }
+
+        public ObservableCollection<seat> Seats
+        {
+            get
+            {
+                return p_seats;
+            }
+            set
+            {
+                base.RaisePropertyChangingEvent("Seats");
+                p_seats = value;
+                base.RaisePropertyChangedEvent("Seats");
+            }
+        }
+
+        public ObservableCollection<guest> Guests
+        {
+            get
+            {
+                return p_Guests;
+            }
+            set
+            {
+                base.RaisePropertyChangingEvent("Guests");
+                p_Guests = value;
+                base.RaisePropertyChangedEvent("Guests");
             }
         }
 
@@ -131,24 +125,7 @@ namespace Seating_Planner.ViewModels
 
         #endregion
 
-        private void Flyout()
-        {
-            // Implement the flyout menu functionality
-            if (r != null)
-            {
-                
-                if (r.Visibility == System.Windows.Visibility.Collapsed)
-                {
-                    r.Visibility = System.Windows.Visibility.Visible;
-                    //(sender as Button).Content = "<";
-                }
-                else
-                {
-                    r.Visibility = System.Windows.Visibility.Collapsed;
-                    //(sender as Button).Content = ">";
-                }
-            }
-        }
+        #region Private Methods
 
         private void Initialise()
         {
@@ -156,5 +133,7 @@ namespace Seating_Planner.ViewModels
             this.PropertyChanged += OnPropertyChanged;
             this.LoadEvents = new LoadEventCommand(this);
         }
+
+        #endregion
     }
 }

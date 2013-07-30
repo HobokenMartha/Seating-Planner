@@ -26,7 +26,7 @@
         </DockPanel>
         <!--<Rectangle Name="rect" Width="150" VerticalAlignment="Stretch" Fill="#99000000" Visibility="Collapsed"/> -->
         <Button Name="FlyoutButton" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="32" Height="32" FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White" RenderTransformOrigin="0.388,-2.642" Click="Menu_Flyout_Click">&gt;</Button>
-        <Button Content="New Window" Grid.Column="1" HorizontalAlignment="Left" Margin="351,216,0,0" VerticalAlignment="Top" Width="75" />
+        <Button Content="New Window" Grid.Column="1" HorizontalAlignment="Left" Margin="351,216,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OpenEventCommand}" />
         <Button Content="Load Events" Grid.Column="1" HorizontalAlignment="Left" Margin="351,256,0,0" VerticalAlignment="Top" Width="75" Command="{Binding LoadEvents}" />
     </Grid>
 </Window>

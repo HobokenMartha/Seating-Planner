@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Seating_Planner.ViewModels;
+using Seating_Planner.Services.Interfaces;
+using Seating_Planner.Services;
 
 namespace Seating_Planner
 {

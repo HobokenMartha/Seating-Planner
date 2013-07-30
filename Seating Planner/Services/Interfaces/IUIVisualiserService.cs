@@ -7,7 +7,7 @@ namespace Seating_Planner.Services.Interfaces
     /// This interface defines a UI controller that will handle dialogs from viewmodels
     /// Based on code found here http://coremvvm.codeplex.com/
     /// </summary>
-    public interface IUIControllerService
+    public interface IUIVisualiserService
     {
         /// <summary>
         /// Registeres a type through a key

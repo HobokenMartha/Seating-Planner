@@ -71,6 +71,7 @@
     <Compile Include="Commands\CommandReference.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\LoadEventCommand.cs" />
+    <Compile Include="Events\CloseRequestEventArgs.cs" />
     <Compile Include="Events\UIEventCompletedArgs.cs" />
     <Compile Include="Models\event_detail.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -111,7 +112,13 @@
     <Compile Include="Persistence\Interfaces\ITableRepository.cs" />
     <Compile Include="Persistence\SeatRepository.cs" />
     <Compile Include="Persistence\TableRepository.cs" />
-    <Compile Include="Services\Interfaces\IUIControllerService.cs" />
+    <Compile Include="Services\Interfaces\IOpenFileService.cs" />
+    <Compile Include="Services\Interfaces\ISaveFileService.cs" />
+    <Compile Include="Services\Interfaces\IUIVisualiserService.cs" />
+    <Compile Include="Services\OpenFileService.cs" />
+    <Compile Include="Services\SaveFileService.cs" />
+    <Compile Include="Services\ServiceProvider.cs" />
+    <Compile Include="Services\UIVisualiserService.cs" />
     <Compile Include="ViewModels\CreateEventViewModel.cs" />
     <Compile Include="ViewModels\LoadEventViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

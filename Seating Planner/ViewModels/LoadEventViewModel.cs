@@ -103,7 +103,7 @@ namespace Seating_Planner.ViewModels
             this.PropertyChanged += OnPropertyChanged;
 
             //TODO: Do we need a new command for this window or should the existing one be refactored?
-            this.LoadEvents = new LoadEventCommand(null);
+            //this.LoadEvents = new LoadEventCommand(null);
         }
 
         #endregion

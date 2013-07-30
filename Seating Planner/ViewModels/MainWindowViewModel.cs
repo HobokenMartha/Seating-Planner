@@ -10,6 +10,9 @@ using System.Windows;
 using System.Windows.Input;
 using Seating_Planner.Models;
 using Seating_Planner.Commands;
+using Seating_Planner.Services;
+using Seating_Planner.Services.Interfaces;
+using Seating_Planner.Views;
 
 namespace Seating_Planner.ViewModels
 {
@@ -22,6 +25,7 @@ namespace Seating_Planner.ViewModels
         private ObservableCollection<table> p_Tables;
         private ObservableCollection<seat> p_seats;
         private ObservableCollection<guest> p_Guests;
+        private IUIVisualiserService uiVisualService = null;
 
         #endregion
 
@@ -31,6 +35,8 @@ namespace Seating_Planner.ViewModels
         /// ICommand to LoadEvents
         /// </summary>
         public ICommand LoadEvents { get; set; }
+
+        private DelegateCommand openEventCommand;
 
         #endregion
 
@@ -103,8 +109,28 @@ namespace Seating_Planner.ViewModels
 
         #endregion
 
-        #region Event Handlers
+        #region OpenEventWindow
+        public DelegateCommand OpenEventCommand
+        {
+            get
+            {
+                if (openEventCommand == null)
+                {
+                    openEventCommand = new DelegateCommand(OpenEventWindow);
+                }
 
+                return openEventCommand;
+            }
+        }
+
+        private void OpenEventWindow()
+        {
+            uiVisualService.Show("LoadEventWindow", new LoadEventViewModel(), true, null);
+        }
+
+        #endregion
+
+        #region Event Handlers
         void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
@@ -132,6 +158,9 @@ namespace Seating_Planner.ViewModels
             this.PropertyChanging += OnPropertyChanging;
             this.PropertyChanged += OnPropertyChanged;
             this.LoadEvents = new LoadEventCommand(this);
+            ViewModelBase.ServiceProvider.RegisterService<IUIVisualiserService>(new UIVisualiserService());
+            uiVisualService = GetService<IUIVisualiserService>();
+            uiVisualService.Register("LoadEventWindow", typeof(LoadEvent));
         }
 
         #endregion

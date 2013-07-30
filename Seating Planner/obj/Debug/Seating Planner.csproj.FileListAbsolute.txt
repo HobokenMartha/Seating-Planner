@@ -4,8 +4,6 @@ C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating P
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Seating Planner.pdb
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\EntityFramework.dll
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\EntityFramework.xml
-C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\MainWindow.baml
-C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\MainWindow.g.cs
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\App.g.cs
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Seating Planner_MarkupCompile.cache
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Seating Planner.g.resources
@@ -13,5 +11,15 @@ C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating P
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Seating Planner.csproj.GenerateResource.Cache
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Seating Planner.exe
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Seating Planner.pdb
-C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\SeatingPlanner.db
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Seating Planner.csprojResolveAssemblyReference.cache
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\MainWindow.baml
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\MainWindow.g.cs
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Seating Planner_MarkupCompile.lref
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Ninject.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Ninject.xml
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\LoadEvent.g.cs
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\LoadEvent.baml
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\SeatingPlanner.db
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\CreateEventWindow.g.cs
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Views\CreateEventWindow.baml

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\App.xaml
-11151548125
+31285276278
 
-231565005380
-18940542297
-MainWindow.xaml;
+481843315394
+19-7877962
+Views\CreateEventWindow.xaml;Views\LoadEvent.xaml;Views\MainWindow.xaml;
 
-False
+True
 

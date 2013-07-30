@@ -1,0 +1,66 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
+using Seating_Planner.Models;
+using Seating_Planner.Persistence;
+using Seating_Planner.ViewModels;
+
+namespace Seating_Planner.Commands
+{
+    public class LoadEventCommand : ICommand
+    {
+        #region Fields
+
+        private MainWindowViewModel m_ViewModel;
+        DBContextFactory factory = new DBContextFactory();
+
+        #endregion
+
+        #region Constructor
+
+        public LoadEventCommand(MainWindowViewModel viewModel)
+        {
+            this.m_ViewModel = viewModel;
+        }
+
+        #endregion
+
+        #region ICommand Members
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public void Execute(object parameter)
+        {
+            // This reports that there is no such table. Um, yeah, there is
+            var eventRepository = new EventRepository(factory);
+            var eventList = eventRepository.GetAll();
+
+            ObservableCollection<event_detail> allEvents = new ObservableCollection<event_detail>();
+            foreach (var e in eventList)
+<<<<<<< HEAD
+            {
+                allEvents.Add(e);
+            }
+=======
+                allEvents.Add(e);
+>>>>>>> 168f7e2cd5454604f5822ab4c466273739710390
+
+            m_ViewModel.allEvents = allEvents;
+
+        }
+
+        #endregion
+    }
+}

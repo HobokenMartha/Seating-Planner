@@ -37,6 +37,9 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -64,41 +67,72 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\event_details.cs">
-      <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
+    <Compile Include="Bindings.cs" />
+    <Compile Include="Commands\CommandReference.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Commands\LoadEventCommand.cs" />
+    <Compile Include="Events\CloseRequestEventArgs.cs" />
+    <Compile Include="Events\UIEventCompletedArgs.cs" />
+    <Compile Include="Models\event_detail.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\guest.cs">
-      <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
+    <Compile Include="Models\guest.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\seat.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\table.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Persistence\BaseClasses\RepositoryBase.cs" />
+    <Compile Include="Persistence\DBContextFactory.cs" />
     <Compile Include="Persistence\EventRepository.cs" />
+    <Compile Include="Persistence\GuestRepository.cs" />
+    <Compile Include="Persistence\Interfaces\IDBContextFactory.cs" />
+    <Compile Include="Persistence\Interfaces\IEventRepository.cs" />
+    <Compile Include="Persistence\Interfaces\IGuestRepository.cs" />
     <Compile Include="Persistence\Interfaces\IRepository.cs" />
+    <Compile Include="Persistence\Interfaces\ISeatRepository.cs" />
+    <Compile Include="Persistence\Interfaces\ITableRepository.cs" />
+    <Compile Include="Persistence\SeatRepository.cs" />
     <Compile Include="Persistence\TableRepository.cs" />
-    <Compile Include="RelayCommand.cs" />
-    <Compile Include="Model\seat.cs">
-      <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SeatingPlannerEntityDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SeatingPlannerEntityDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SeatingPlannerEntityDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\SeatingPlannerEntityDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Model\table.cs">
-      <DependentUpon>SeatingPlannerEntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\TableDetailViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelBase.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Services\Interfaces\IOpenFileService.cs" />
+    <Compile Include="Services\Interfaces\ISaveFileService.cs" />
+    <Compile Include="Services\Interfaces\IUIVisualiserService.cs" />
+    <Compile Include="Services\OpenFileService.cs" />
+    <Compile Include="Services\SaveFileService.cs" />
+    <Compile Include="Services\ServiceProvider.cs" />
+    <Compile Include="Services\UIVisualiserService.cs" />
+    <Compile Include="ViewModels\CreateEventViewModel.cs" />
+    <Compile Include="ViewModels\LoadEventViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\TableDetailViewModel.cs" />
+    <Compile Include="ViewModels\BaseClasses\ViewModelBase.cs" />
+    <Page Include="Views\CreateEventWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoadEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -106,7 +140,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\CreateEventWindow.xaml.cs">
+      <DependentUpon>CreateEventWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoadEvent.xaml.cs">
+      <DependentUpon>LoadEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -129,42 +169,42 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </None>
+    <None Include="Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <EntityDeploy Include="Model\SeatingPlannerEntityDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SeatingPlannerEntityDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="SeatingPlanner.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Model\SeatingPlannerEntityDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>SeatingPlannerEntityDataModel.Context.cs</LastGenOutput>
-    </None>
-    <None Include="Model\SeatingPlannerEntityDataModel.edmx.diagram">
-      <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
-    </None>
-    <None Include="Model\SeatingPlannerEntityDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SeatingPlannerEntityDataModel.edmx</DependentUpon>
-      <LastGenOutput>SeatingPlannerEntityDataModel.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

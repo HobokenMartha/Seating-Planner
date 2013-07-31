@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Seating_Planner.Models;
+using Seating_Planner.Persistence;
 using Seating_Planner.Commands;
 using Seating_Planner.Services;
 using Seating_Planner.Services.Interfaces;
 using Seating_Planner.Views;
+using System.Diagnostics;
 
 namespace Seating_Planner.ViewModels
 {
@@ -25,18 +27,43 @@ namespace Seating_Planner.ViewModels
         private ObservableCollection<table> p_Tables;
         private ObservableCollection<seat> p_seats;
         private ObservableCollection<guest> p_Guests;
+        private ObservableCollection<event_detail> p_Events = new ObservableCollection<event_detail>();
         private IUIVisualiserService uiVisualService = null;
 
         #endregion
 
         #region Command Properties
 
-        /// <summary>
-        /// ICommand to LoadEvents
-        /// </summary>
-        public ICommand LoadEvents { get; set; }
-
         private DelegateCommand openEventCommand;
+        private DelegateCommand loadEventsCommand;
+
+        /// <summary>
+        /// DelegateCommand to LoadEvents
+        /// </summary>
+        public DelegateCommand LoadEventsCommand
+        {
+            get
+            {
+                if (loadEventsCommand == null)
+                {
+                    loadEventsCommand = new DelegateCommand(LoadEvents);
+                }
+
+                return loadEventsCommand;
+            }
+        }
+
+        private void LoadEvents()
+        {
+            DBContextFactory factory = new DBContextFactory();
+            var eventRepository = new EventRepository(factory);
+            IEnumerable<event_detail> ed = eventRepository.GetAll();
+
+            foreach (event_detail e in ed)
+            {
+                this.Events.Add(e);
+            }
+        }
 
         #endregion
 
@@ -107,6 +134,20 @@ namespace Seating_Planner.ViewModels
             }
         }
 
+        public ObservableCollection<event_detail> Events
+        {
+            get
+            {
+                return p_Events;
+            }
+            private set
+            {
+                base.RaisePropertyChangingEvent("Events");
+                p_Events = value;
+                base.RaisePropertyChangedEvent("Events");
+            }
+        }
+
         #endregion
 
         #region OpenEventWindow
@@ -125,7 +166,7 @@ namespace Seating_Planner.ViewModels
 
         private void OpenEventWindow()
         {
-            uiVisualService.Show("LoadEventWindow", new LoadEventViewModel(), true, null);
+            uiVisualService.Show("LoadEventWindow", this, true, null);
         }
 
         #endregion
@@ -157,7 +198,6 @@ namespace Seating_Planner.ViewModels
         {
             this.PropertyChanging += OnPropertyChanging;
             this.PropertyChanged += OnPropertyChanged;
-            this.LoadEvents = new LoadEventCommand(this);
             ViewModelBase.ServiceProvider.RegisterService<IUIVisualiserService>(new UIVisualiserService());
             uiVisualService = GetService<IUIVisualiserService>();
             uiVisualService.Register("LoadEventWindow", typeof(LoadEvent));

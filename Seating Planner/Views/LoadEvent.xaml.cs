@@ -30,7 +30,7 @@ namespace Seating_Planner.Views
 
         void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            var viewModel = (LoadEventViewModel)this.DataContext;
+            var viewModel = (MainWindowViewModel)this.DataContext;
         }
 
         #endregion

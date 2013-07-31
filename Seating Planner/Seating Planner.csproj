@@ -120,7 +120,6 @@
     <Compile Include="Services\ServiceProvider.cs" />
     <Compile Include="Services\UIVisualiserService.cs" />
     <Compile Include="ViewModels\CreateEventViewModel.cs" />
-    <Compile Include="ViewModels\LoadEventViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\TableDetailViewModel.cs" />
     <Compile Include="ViewModels\BaseClasses\ViewModelBase.cs" />

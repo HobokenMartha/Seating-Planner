@@ -7,15 +7,15 @@
         <Seating_Planner.ViewModels:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <ListBox Name="Events" ItemsSource="{Binding Events}" Margin="10,10,0,174" DisplayMemberPath="event_name" HorizontalAlignment="Left" Width="265" SelectedItem="{Binding Event}">
+        <ListBox Name="Events" ItemsSource="{Binding Events}" Margin="10,10,0,174" DisplayMemberPath="event_name" HorizontalAlignment="Left" Width="265" SelectedItem="{Binding Event, Mode=TwoWay}">
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type Seating_Planner.ViewModels:MainWindowViewModel}">
                     <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5"></Border>
                 </DataTemplate>
             </ListBox.Resources>
         </ListBox>
-        <Label Name="date_time_updated" Margin="100,203,19,132" Content="{Binding event_details}"/>
+        <TextBlock Name="Details" Text="{Binding Path=details, UpdateSourceTrigger=PropertyChanged}" Width="150" Height="70" Margin="74,202,70,99"></TextBlock>
         <Button Content="Cancel" HorizontalAlignment="Left" Margin="203,330,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Load" HorizontalAlignment="Left" Margin="113,330,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OpenSingleEventCommand}" CommandParameter="{Binding SelectedItem, ElementName=Events}"/>
+        <Button Content="Load" HorizontalAlignment="Left" Margin="113,330,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OpenSingleEventCommand}" CommandParameter="{Binding SelectedItem, ElementName=Events}" RenderTransformOrigin="-0.134,0.558"/>
     </Grid>
 </Window>

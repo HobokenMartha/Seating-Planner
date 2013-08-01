@@ -55,6 +55,7 @@ namespace Seating_Planner.ViewModels
 
         private void LoadEvents()
         {
+            this.Events.Clear();
             DBContextFactory factory = new DBContextFactory();
             var eventRepository = new EventRepository(factory);
             IEnumerable<event_detail> ed = eventRepository.GetAll();
@@ -131,6 +132,9 @@ namespace Seating_Planner.ViewModels
 
         #region Data Properties
 
+        /// <summary>
+        /// The currently loaded event
+        /// </summary>
         public event_detail Event
         {
             get
@@ -143,10 +147,29 @@ namespace Seating_Planner.ViewModels
                 {
                     base.RaisePropertyChangingEvent("SelectedEvent");
                     p_Event = value;
+                    details = p_Event.event_details;
                     base.RaisePropertyChangedEvent("SelectedEvent");
                 }
             }
         }
+
+        public string details
+        {
+            get
+            {
+                if (p_Event != null)
+                    return p_Event.event_details;
+                else
+                    return "";
+            }
+            set
+            {
+                base.RaisePropertyChangingEvent("EventDetails");
+                p_Event.event_details = value;
+                base.RaisePropertyChangedEvent("EventDetails");
+            }
+        }
+
 
         public ObservableCollection<table> Tables
         {
@@ -190,6 +213,9 @@ namespace Seating_Planner.ViewModels
             }
         }
 
+        /// <summary>
+        /// All events
+        /// </summary>
         public ObservableCollection<event_detail> Events
         {
             get
@@ -201,19 +227,7 @@ namespace Seating_Planner.ViewModels
                 base.RaisePropertyChangingEvent("Events");
                 p_Events = value;
                 base.RaisePropertyChangedEvent("Events");
-            }
-        }
-
-        public String event_details
-        {
-            get
-            {
-                if (p_Event != null)
-                {
-                    return "Date Time Updated: " + p_Event.date_time_updated.ToString();
-                }
-               
-                return "";
+                
             }
         }
 

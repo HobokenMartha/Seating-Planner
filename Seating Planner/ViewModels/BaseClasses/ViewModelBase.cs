@@ -47,9 +47,9 @@ namespace Seating_Planner.ViewModels
             return ServiceProvider.GetService<T>();
         }
 
-        public virtual bool IgnorePropertyChangeEvents { get; set; }
+        protected bool IgnorePropertyChangeEvents { get; set; }
 
-        public virtual void RaisePropertyChangedEvent(string propertyName)
+        public void RaisePropertyChangedEvent(string propertyName)
         {
             if (IgnorePropertyChangeEvents) return;
 
@@ -59,7 +59,7 @@ namespace Seating_Planner.ViewModels
             PropertyChanged(this, e);
         }
 
-        public virtual void RaisePropertyChangingEvent(string propertyName)
+        public void RaisePropertyChangingEvent(string propertyName)
         {
             if (IgnorePropertyChangeEvents) return;
 
@@ -72,7 +72,7 @@ namespace Seating_Planner.ViewModels
         /// <summary>
         /// This raises the ActivateRequest event to activate the UI.
         /// </summary>
-        public virtual void RaiseActivateRequest()
+        public void RaiseActivateRequest()
         {
             ActivateRequest(this, EventArgs.Empty);
         }
@@ -80,7 +80,7 @@ namespace Seating_Planner.ViewModels
         /// <summary>
         /// This raises the CloseRequest event to close the UI.
         /// </summary>
-        public virtual void RaiseCloseRequest()
+        public void RaiseCloseRequest()
         {
             CloseRequest(this, new CloseRequestEventArgs(null));
         }

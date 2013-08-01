@@ -14,11 +14,9 @@ using Seating_Planner.Commands;
 using Seating_Planner.Services;
 using Seating_Planner.Services.Interfaces;
 using Seating_Planner.Views;
-using System.Diagnostics;
 
 namespace Seating_Planner.ViewModels
 {
-    //TODO: I've been looking here: http://astoundingprogramming.wordpress.com/2012/02/23/mvvm-light-is-cool-viewmodellocator-sucks/ for info on opening windows using MVVM
     public class MainWindowViewModel : ViewModelBase
     {
         #region Properties
@@ -36,9 +34,11 @@ namespace Seating_Planner.ViewModels
 
         private DelegateCommand openEventCommand;
         private DelegateCommand loadEventsCommand;
+        private DelegateCommand openSingleEventCommand;
 
+        #region Load Events Command
         /// <summary>
-        /// DelegateCommand to LoadEvents
+        /// DelegateCommand to Load Events
         /// </summary>
         public DelegateCommand LoadEventsCommand
         {
@@ -67,6 +67,59 @@ namespace Seating_Planner.ViewModels
 
         #endregion
 
+        #region OpenEventWindow
+
+        /// <summary>
+        /// Delegate Command to handle opening the load event window
+        /// </summary>
+        public DelegateCommand OpenEventCommand
+        {
+            get
+            {
+                if (openEventCommand == null)
+                {
+                    openEventCommand = new DelegateCommand(OpenEventWindow);
+                }
+
+                return openEventCommand;
+            }
+        }
+
+        private void OpenEventWindow()
+        {
+            // Initialise the Events Observable Collection
+            LoadEvents();
+
+            // Open the Load Event Window
+            uiVisualService.Show("LoadEventWindow", this, true, null);
+        }
+
+        #endregion
+
+        #region Open a Single Event Command
+
+        public DelegateCommand OpenSingleEventCommand
+        {
+            get
+            {
+                if (openSingleEventCommand == null)
+                {
+                    openSingleEventCommand = new DelegateCommand(OpenEvent);
+                }
+
+                return openSingleEventCommand;
+            }
+        }
+
+        private void OpenEvent()
+        {
+            
+        }
+
+        #endregion
+
+        #endregion
+
         #region Constructors
 
         public MainWindowViewModel()
@@ -86,9 +139,12 @@ namespace Seating_Planner.ViewModels
             }
             set
             {
-                base.RaisePropertyChangingEvent("Event");
-                p_Event = value;
-                base.RaisePropertyChangedEvent("Event");
+                if (value != null)
+                {
+                    base.RaisePropertyChangingEvent("SelectedEvent");
+                    p_Event = value;
+                    base.RaisePropertyChangedEvent("SelectedEvent");
+                }
             }
         }
 
@@ -148,34 +204,30 @@ namespace Seating_Planner.ViewModels
             }
         }
 
-        #endregion
-
-        #region OpenEventWindow
-        public DelegateCommand OpenEventCommand
+        public String event_details
         {
             get
             {
-                if (openEventCommand == null)
+                if (p_Event != null)
                 {
-                    openEventCommand = new DelegateCommand(OpenEventWindow);
+                    return "Date Time Updated: " + p_Event.date_time_updated.ToString();
                 }
-
-                return openEventCommand;
+               
+                return "";
             }
-        }
-
-        private void OpenEventWindow()
-        {
-            uiVisualService.Show("LoadEventWindow", this, true, null);
         }
 
         #endregion
 
         #region Event Handlers
+        
         void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
+                case "SelectedEvent":
+                    
+                    break;
                 default:
                     break;
             }
@@ -185,6 +237,8 @@ namespace Seating_Planner.ViewModels
         {
             switch (e.PropertyName)
             {
+                case "SelectedEvent":
+                    break;
                 default:
                     break;
             }

@@ -43,5 +43,10 @@ namespace Seating_Planner.Views
         }
 
         #endregion
+
+        private void Events_Initialized(object sender, EventArgs e)
+        {
+
+        }
     }
 }

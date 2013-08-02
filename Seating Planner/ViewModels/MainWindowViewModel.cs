@@ -24,7 +24,7 @@ namespace Seating_Planner.ViewModels
         private bool p_EventLoaded = false;
         private event_detail p_Event;
         private ObservableCollection<table> p_Tables;
-        private ObservableCollection<seat> p_seats;
+        private ObservableCollection<seat> p_Seats;
         private ObservableCollection<guest> p_Guests;
         private ObservableCollection<event_detail> p_Events = new ObservableCollection<event_detail>();
         private IUIVisualiserService uiVisualService = null;
@@ -115,7 +115,20 @@ namespace Seating_Planner.ViewModels
 
         private void OpenEvent()
         {
-            
+            foreach (table t in this.p_Event.tables)
+            {
+                this.p_Tables.Add(t);
+            }
+
+            foreach (guest g in this.p_Event.guests)
+            {
+                this.p_Guests.Add(g);
+            }
+
+            foreach (seat s in this.p_Event.seats)
+            {
+                this.p_Seats.Add(s);
+            }
         }
 
         #endregion
@@ -170,6 +183,9 @@ namespace Seating_Planner.ViewModels
             }
         }
 
+        /// <summary>
+        /// The tables associated with a particular event
+        /// </summary>
         public ObservableCollection<table> Tables
         {
             get
@@ -178,26 +194,34 @@ namespace Seating_Planner.ViewModels
             }
             set
             {
+                this.p_Tables.Clear();
                 base.RaisePropertyChangingEvent("Tables");
                 p_Tables = value;
                 base.RaisePropertyChangedEvent("Tables");
             }
         }
 
+        /// <summary>
+        /// All seats allocated to a particular event
+        /// </summary>
         public ObservableCollection<seat> Seats
         {
             get
             {
-                return p_seats;
+                return p_Seats;
             }
             set
             {
+                this.p_Seats.Clear();
                 base.RaisePropertyChangingEvent("Seats");
-                p_seats = value;
+                p_Seats = value;
                 base.RaisePropertyChangedEvent("Seats");
             }
         }
 
+        /// <summary>
+        /// Guests associated with a particular event
+        /// </summary>
         public ObservableCollection<guest> Guests
         {
             get

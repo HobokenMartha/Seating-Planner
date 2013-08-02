@@ -21,6 +21,7 @@ namespace Seating_Planner.ViewModels
     {
         #region Properties
 
+        private bool p_EventLoaded = false;
         private event_detail p_Event;
         private ObservableCollection<table> p_Tables;
         private ObservableCollection<seat> p_seats;
@@ -133,6 +134,23 @@ namespace Seating_Planner.ViewModels
         #region Data Properties
 
         /// <summary>
+        /// An observable data property to indicate whether or not p_Event holds an event_detail object
+        /// </summary>
+        public bool EventLoaded 
+        {
+            get
+            {
+                return this.p_EventLoaded;
+            }
+            set
+            {
+                base.RaisePropertyChangingEvent("EventLoaded");
+                this.p_EventLoaded = value;
+                base.RaisePropertyChangedEvent("EventLoaded");
+            }
+        }
+
+        /// <summary>
         /// The currently loaded event
         /// </summary>
         public event_detail Event
@@ -145,31 +163,12 @@ namespace Seating_Planner.ViewModels
             {
                 if (value != null)
                 {
-                    base.RaisePropertyChangingEvent("SelectedEvent");
+                    base.RaisePropertyChangingEvent("Event");
                     p_Event = value;
-                    details = p_Event.event_details;
-                    base.RaisePropertyChangedEvent("SelectedEvent");
+                    base.RaisePropertyChangedEvent("Event");
                 }
             }
         }
-
-        public string details
-        {
-            get
-            {
-                if (p_Event != null)
-                    return p_Event.event_details;
-                else
-                    return "";
-            }
-            set
-            {
-                base.RaisePropertyChangingEvent("EventDetails");
-                p_Event.event_details = value;
-                base.RaisePropertyChangedEvent("EventDetails");
-            }
-        }
-
 
         public ObservableCollection<table> Tables
         {
@@ -239,8 +238,11 @@ namespace Seating_Planner.ViewModels
         {
             switch (e.PropertyName)
             {
-                case "SelectedEvent":
-                    
+                case "Event":
+                    if (p_Event != null)
+                        EventLoaded = true;
+                    else
+                        EventLoaded = false;
                     break;
                 default:
                     break;
@@ -251,7 +253,7 @@ namespace Seating_Planner.ViewModels
         {
             switch (e.PropertyName)
             {
-                case "SelectedEvent":
+                case "Event":
                     break;
                 default:
                     break;

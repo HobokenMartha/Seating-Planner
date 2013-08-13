@@ -22,6 +22,8 @@ namespace Seating_Planner.ViewModels
         #region Properties
 
         private bool p_EventLoaded = false;
+        // MainWindow hooks into this to display the loaded event
+        private bool p_DoEventLoad = false;
         private event_detail p_Event;
         private ObservableCollection<table> p_Tables;
         private ObservableCollection<seat> p_Seats;
@@ -31,11 +33,18 @@ namespace Seating_Planner.ViewModels
 
         #endregion
 
+        // Public EventHandler for Views to subscribe to for closing windows
+        public EventHandler RequestClose;
+
         #region Command Properties
 
         private DelegateCommand openEventCommand;
         private DelegateCommand loadEventsCommand;
         private DelegateCommand openSingleEventCommand;
+        private DelegateCommand closeOpenEventCommandWindow;
+        
+        // Public command to handle closing windows
+        public ICommand ExitCommand { get; set; }
 
         #region Load Events Command
         /// <summary>
@@ -129,9 +138,30 @@ namespace Seating_Planner.ViewModels
             {
                 this.p_Seats.Add(s);
             }
+
+            DoEventLoad = true;
+            CloseWindow();
         }
 
         #endregion
+
+        public DelegateCommand CloseOpenEventCommand
+        {
+            get
+            {
+                if (closeOpenEventCommandWindow == null)
+                {
+                    closeOpenEventCommandWindow = new DelegateCommand(CancelOpenEventWindow);
+                }
+
+                return closeOpenEventCommandWindow;
+            }
+        }
+
+        private void CancelOpenEventWindow()
+        {
+            uiVisualService.Unregister("LoadEventWindow");
+        }
 
         #endregion
 
@@ -160,6 +190,20 @@ namespace Seating_Planner.ViewModels
                 base.RaisePropertyChangingEvent("EventLoaded");
                 this.p_EventLoaded = value;
                 base.RaisePropertyChangedEvent("EventLoaded");
+            }
+        }
+
+        public bool DoEventLoad
+        {
+            get
+            {
+                return this.p_DoEventLoad;
+            }
+            set
+            {
+                base.RaisePropertyChangingEvent("DoEventLoad");
+                this.p_DoEventLoad = value;
+                base.RaisePropertyChangedEvent("DoEventLoad");
             }
         }
 
@@ -268,6 +312,8 @@ namespace Seating_Planner.ViewModels
                     else
                         EventLoaded = false;
                     break;
+                case "DoEventLoad":
+                    break;
                 default:
                     break;
             }
@@ -279,14 +325,26 @@ namespace Seating_Planner.ViewModels
             {
                 case "Event":
                     break;
+                case "DoEventLoad":
+                    break;
                 default:
                     break;
             }
         }
-
+     
         #endregion
 
         #region Private Methods
+
+        private void CloseWindow()
+        {
+            EventHandler handler = this.RequestClose;
+
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+        }
 
         private void Initialise()
         {
@@ -295,6 +353,7 @@ namespace Seating_Planner.ViewModels
             ViewModelBase.ServiceProvider.RegisterService<IUIVisualiserService>(new UIVisualiserService());
             uiVisualService = GetService<IUIVisualiserService>();
             uiVisualService.Register("LoadEventWindow", typeof(LoadEvent));
+            ExitCommand = new DelegateCommand(CloseWindow);
         }
 
         #endregion

@@ -10,7 +10,7 @@
         <BooleanToVisibilityConverter x:Key="Seating_Planner.Views.Converters.VisibilityConverter"></BooleanToVisibilityConverter>
     </Window.Resources>
     <Grid>
-        <ListBox Name="Events" ItemsSource="{Binding Events}" Margin="10,10,0,174" DisplayMemberPath="event_name" HorizontalAlignment="Left" Width="365" SelectedItem="{Binding Event, Mode=TwoWay}">
+        <ListBox Name="Events" ItemsSource="{Binding Events}" Margin="10,10,0,174" DisplayMemberPath="event_name" HorizontalAlignment="Left" Width="374" SelectedItem="{Binding Event, Mode=TwoWay}">
             <ListBox.Resources>
                 <DataTemplate DataType="{x:Type Seating_Planner.ViewModels:MainWindowViewModel}">
                     <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5"></Border>
@@ -27,7 +27,7 @@
             <LineBreak></LineBreak>
             <Run Text="{Binding Event.date_time_updated, UpdateSourceTrigger=PropertyChanged}"></Run>
         </TextBlock>
-        <Button Content="Load" HorizontalAlignment="Left" Margin="200,328,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OpenSingleEventCommand}" CommandParameter="{Binding SelectedItem, ElementName=Events}" RenderTransformOrigin="-0.134,0.558" IsEnabled="{Binding EventLoaded}"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="290,328,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Load" HorizontalAlignment="Left" Margin="219,328,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OpenSingleEventCommand}" CommandParameter="{Binding SelectedItem, ElementName=Events}" RenderTransformOrigin="-0.134,0.558" IsEnabled="{Binding EventLoaded}"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="309,328,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ExitCommand}"/>
     </Grid>
 </Window>

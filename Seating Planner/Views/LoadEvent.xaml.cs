@@ -31,6 +31,9 @@ namespace Seating_Planner.Views
         void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             var viewModel = (MainWindowViewModel)this.DataContext;
+            
+            // Subscribe to the VM's CloseWindow Event
+            viewModel.RequestClose += new EventHandler(CloseWindow);
         }
 
         #endregion
@@ -43,5 +46,15 @@ namespace Seating_Planner.Views
         }
 
         #endregion
+
+        /// <summary>
+        /// Handles the closing of the Window
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="args"></param>
+        public void CloseWindow(Object source, EventArgs args)
+        {
+            this.Close();
+        }
     }
 }

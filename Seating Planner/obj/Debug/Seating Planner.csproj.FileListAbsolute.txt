@@ -47,3 +47,19 @@ C:\Users\Michael\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating P
 C:\Users\Michael\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Seating Planner.g.resources
 C:\Users\Michael\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Seating_Planner.Properties.Resources.resources
 C:\Users\Michael\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\obj\Debug\Seating Planner.csproj.GenerateResource.Cache
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Xceed.Wpf.AvalonDock.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Xceed.Wpf.DataGrid.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\mobrien\Documents\Visual Studio 2012\Projects\Seating-Planner\Seating Planner\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll

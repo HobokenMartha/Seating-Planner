@@ -26,12 +26,21 @@ namespace Seating_Planner.Services
 
         #region Public Methods
 
+        /// <summary>
+        /// Registers a collection of entries
+        /// </summary>
+        /// <param name="startupData"></param>
         public void Register(Dictionary<string, Type> startupData)
         {
             foreach (var entry in startupData)
                 Register(entry.Key, entry.Value);
         }
 
+        /// <summary>
+        /// Registers a type through a key.
+        /// </summary>
+        /// <param name="key">Key for the UI dialog</param>
+        /// <param name="winType">Type which implements dialog</param>
         public void Register(string key, Type winType)
         {
             if (!_registeredWindows.ContainsKey(key))
@@ -43,7 +52,7 @@ namespace Seating_Planner.Services
                 if (!typeof(Window).IsAssignableFrom(winType))
                     throw new ArgumentException("winType must be of type Window");
                 if (_registeredWindows.ContainsKey(key))
-                    throw new ArgumentException("window name already registered");
+                    throw new ArgumentException("Window name already registered");
 
                 lock (_registeredWindows)
                 {
@@ -52,6 +61,11 @@ namespace Seating_Planner.Services
             }
         }
 
+        /// <summary>
+        /// This unregisters a type and removes it from the mapping
+        /// </summary>
+        /// <param name="key">Key to remove</param>
+        /// <returns>True/False success</returns>
         public bool Unregister(string key)
         {
             if (string.IsNullOrEmpty(key))

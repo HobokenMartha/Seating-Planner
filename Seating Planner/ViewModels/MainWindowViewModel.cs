@@ -25,6 +25,7 @@ namespace Seating_Planner.ViewModels
         // MainWindow hooks into this to display the loaded event
         private bool p_DoEventLoad = false;
         private event_detail p_Event;
+        private string p_WindowTitle;
         private ObservableCollection<table> p_Tables;
         private ObservableCollection<seat> p_Seats;
         private ObservableCollection<guest> p_Guests;
@@ -139,7 +140,13 @@ namespace Seating_Planner.ViewModels
                 this.p_Seats.Add(s);
             }
 
+            // Indicate that we've loaded an Event.
             DoEventLoad = true;
+
+            // Set the main window's title bar.
+            WindowTitle = p_Event.event_name;
+
+            // Close the popup window
             CloseWindow();
         }
 
@@ -224,6 +231,38 @@ namespace Seating_Planner.ViewModels
                     p_Event = value;
                     base.RaisePropertyChangedEvent("Event");
                 }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string WindowTitle
+        {
+            get
+            {
+                if (this.p_Event == null)
+                {
+                    p_WindowTitle = "Seating Planner";
+                    return p_WindowTitle;
+                }
+                else
+                {
+                    p_WindowTitle = p_Event.event_name + " - Seating Planner";
+                    return p_WindowTitle;
+                }
+            }
+            set
+            {
+                if (this.p_Event == null)
+                {
+                    p_WindowTitle = "Seating Planner";
+                }
+                else
+                {
+                    p_WindowTitle = p_Event.event_name + " - Seating Planner";
+                }
+                base.RaisePropertyChangedEvent("WindowTitle");
             }
         }
 
@@ -313,6 +352,8 @@ namespace Seating_Planner.ViewModels
                         EventLoaded = false;
                     break;
                 case "DoEventLoad":
+                    break;
+                case "WindowTitle":
                     break;
                 default:
                     break;

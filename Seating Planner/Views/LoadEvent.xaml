@@ -27,7 +27,7 @@
             <LineBreak></LineBreak>
             <Run Text="{Binding Event.date_time_updated, UpdateSourceTrigger=PropertyChanged}"></Run>
         </TextBlock>
-        <Button Content="Load" HorizontalAlignment="Left" Margin="219,328,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OpenSingleEventCommand}" CommandParameter="{Binding SelectedItem, ElementName=Events}" RenderTransformOrigin="-0.134,0.558" IsEnabled="{Binding EventLoaded}"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="309,328,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ExitCommand}"/>
+        <Button Content="Load" HorizontalAlignment="Left" Margin="210,328,0,0" VerticalAlignment="Top" Width="75" Command="{Binding OpenSingleEventCommand}" CommandParameter="{Binding SelectedItem, ElementName=Events}" RenderTransformOrigin="-0.134,0.558" IsEnabled="{Binding EventLoaded}"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="300,328,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ExitCommand}"/>
     </Grid>
 </Window>

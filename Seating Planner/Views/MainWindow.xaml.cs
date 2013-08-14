@@ -35,6 +35,9 @@ namespace Seating_Planner
         {
             // Subscribe to ViewModel events
             var viewModel = (MainWindowViewModel)this.DataContext;
+            
+            // Subscribe to the VM's CloseWindow Event
+            viewModel.RequestClose += new EventHandler(Exit);
         }
 
         #endregion
@@ -56,6 +59,11 @@ namespace Seating_Planner
                 (sender as Button).Content = ">";
                 (sender as Button).ToolTip = "View Menu";
             }
+        }
+
+        private void Exit(Object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
         /// <summary>

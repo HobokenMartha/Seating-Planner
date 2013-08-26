@@ -45,6 +45,18 @@ namespace Seating_Planner.Views
             this.DataContextChanged += OnDataContextChanged;
         }
 
+        /// <summary>
+        /// Handles double clicking list items to open projects
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void listItemDoubleClick(object sender, MouseEventArgs args)
+        {
+            var viewModel = (MainWindowViewModel)this.DataContext;
+            if (viewModel.OpenSingleEventCommand.CanExecute())
+                viewModel.OpenSingleEventCommand.Execute();
+        }
+
         #endregion
 
         /// <summary>

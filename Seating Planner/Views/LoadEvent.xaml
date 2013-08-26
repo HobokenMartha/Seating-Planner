@@ -16,6 +16,11 @@
                     <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5"></Border>
                 </DataTemplate>
             </ListBox.Resources>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <EventSetter Event="MouseDoubleClick" Handler="listItemDoubleClick"></EventSetter>
+                </Style>
+            </ListBox.ItemContainerStyle>
         </ListBox>
         <TextBlock Name="Details" Width="365" Margin="10,202,19,70" Visibility="{Binding EventLoaded, Converter={StaticResource Seating_Planner.Views.Converters.VisibilityConverter}}">
             <Run Text="Details" FontWeight="Bold"></Run>

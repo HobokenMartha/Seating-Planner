@@ -90,6 +90,7 @@
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\LoadEventCommand.cs" />
     <Compile Include="Events\CloseRequestEventArgs.cs" />
+    <Compile Include="Events\MousePosition.cs" />
     <Compile Include="Events\UIEventCompletedArgs.cs" />
     <Compile Include="Models\event_detail.cs">
       <DependentUpon>Model.tt</DependentUpon>

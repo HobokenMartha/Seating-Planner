@@ -29,7 +29,7 @@ namespace Seating_Planner.ViewModels
         private ObservableCollection<table> p_Tables;
         private ObservableCollection<seat> p_Seats;
         private ObservableCollection<guest> p_Guests;
-        private ObservableCollection<event_detail> p_Events = new ObservableCollection<event_detail>();
+        private ObservableCollection<event_detail> p_Events;
         private IUIVisualiserService uiVisualService = null;
 
         #endregion
@@ -66,15 +66,13 @@ namespace Seating_Planner.ViewModels
 
         private void LoadEvents()
         {
-            this.Events.Clear();
+            if(this.Events != null)
+                this.Events.Clear();
+            
             DBContextFactory factory = new DBContextFactory();
             var eventRepository = new EventRepository(factory);
             IEnumerable<event_detail> ed = eventRepository.GetAll();
-
-            foreach (event_detail e in ed)
-            {
-                this.Events.Add(e);
-            }
+            this.Events = new ObservableCollection<event_detail>(ed.ToList<event_detail>());
         }
 
         #endregion
@@ -235,7 +233,7 @@ namespace Seating_Planner.ViewModels
         }
 
         /// <summary>
-        /// 
+        /// A property to set the main window's title
         /// </summary>
         public string WindowTitle
         {

@@ -37,29 +37,10 @@ namespace Seating_Planner
             var viewModel = (MainWindowViewModel)this.DataContext;
             
             // Subscribe to the VM's CloseWindow Event
-            viewModel.RequestClose += new EventHandler(Exit);
+            //viewModel.RequestClose += new EventHandler(Exit);
         }
 
         #endregion
-
-        /// <summary>
-        /// Responsible for handling the flyout menu behaviour
-        /// </summary>
-        private void Menu_Flyout_Click(object sender, RoutedEventArgs e)
-        {
-            if (rect.Visibility == System.Windows.Visibility.Collapsed)
-            {
-                rect.Visibility = System.Windows.Visibility.Visible;
-                (sender as Button).Content = "<";
-                (sender as Button).ToolTip = "Hide Menu";
-            }
-            else
-            {
-                rect.Visibility = System.Windows.Visibility.Collapsed;
-                (sender as Button).Content = ">";
-                (sender as Button).ToolTip = "View Menu";
-            }
-        }
 
         private void Exit(Object sender, EventArgs e)
         {
@@ -72,6 +53,15 @@ namespace Seating_Planner
         private void Initialise()
         {
             this.DataContextChanged += OnDataContextChanged;
+        }
+
+        private void Zoom_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            double zoom = this.Zoom.Value;
+            zoom /= 100;
+
+            sc.ScaleX = zoom;
+            sc.ScaleY = zoom;
         }
     }
 }

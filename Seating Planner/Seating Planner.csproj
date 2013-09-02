@@ -89,6 +89,7 @@
     <Compile Include="Commands\CommandReference.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\LoadEventCommand.cs" />
+    <Compile Include="Common\Mediator.cs" />
     <Compile Include="Events\CloseRequestEventArgs.cs" />
     <Compile Include="Events\MousePosition.cs" />
     <Compile Include="Events\UIEventCompletedArgs.cs" />

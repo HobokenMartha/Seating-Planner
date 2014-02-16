@@ -22,6 +22,7 @@ namespace Seating_Planner.ViewModels
         #region Properties
 
         private bool p_EventLoaded = false;
+        
         // MainWindow hooks into this to display the loaded event
         private bool p_DoEventLoad = false;
         private event_detail p_Event;

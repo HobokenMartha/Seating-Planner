@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Seating Planner Data")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("NSW Nurses and Midwives' Association")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Seating Planner Data")]
-[assembly: AssemblyCopyright("Copyright © NSW Nurses and Midwives' Association 2014")]
+[assembly: AssemblyCopyright("Copyright © Michael O'Brien 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

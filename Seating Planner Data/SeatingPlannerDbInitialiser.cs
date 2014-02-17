@@ -14,9 +14,9 @@ namespace Seating_Planner_Data
     {
         protected override void Seed(SeatingPlannerDbContext context)
         {
-            //Event event1 = new Event { EventId = 1, Name = "Test Event", Budget = 0.00, StartDate = DateTime.Now, EndDate = DateTime.Now, Venue = "Test Venue" };
-            //context.Events.Add(event1);
-            //context.SaveChanges();
+            Event event1 = new Event { EventId = 1, Name = "Test Event", Budget = 0.00, StartDate = DateTime.Now, EndDate = DateTime.Now, Venue = "Test Venue" };
+            context.Events.Add(event1);
+            context.SaveChanges();
         }
     }
 }

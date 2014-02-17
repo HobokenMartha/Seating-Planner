@@ -26,7 +26,7 @@ namespace Seating_Planner_Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            Database.SetInitializer<SeatingPlannerDbContext>(new SeatingPlannerDbInitialiser());
+            //Database.SetInitializer<SeatingPlannerDbContext>(new SeatingPlannerDbInitialiser());
         }
     }
 }

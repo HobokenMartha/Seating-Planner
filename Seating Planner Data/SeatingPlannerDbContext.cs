@@ -10,10 +10,20 @@ namespace Seating_Planner_Data
     public class SeatingPlannerDbContext : DbContext
     {
         public SeatingPlannerDbContext(string ConnString)
-            : base(ConnString) { }
+            : base(ConnString) 
+        {
+            
+        }
 
-        public DbSet<Event> Events;
-        public DbSet<Table> Tables;
-        public DbSet<Guest> Guests;
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer(new SeatingPlannerDbInitialiser());
+            
+            base.OnModelCreating(modelBuilder);
+        }
+
+        public DbSet<Event> Events {get; set; }
+        public DbSet<Table> Tables { get; set; }
+        public DbSet<Guest> Guests { get; set; }
     }
 }

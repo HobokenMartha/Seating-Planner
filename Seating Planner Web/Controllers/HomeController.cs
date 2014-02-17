@@ -6,21 +6,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Seating_Planner_Data;
-using System.Diagnostics;
 
 namespace Seating_Planner_Web.Controllers
 {
     public class HomeController : Controller
     {
-        private SeatingPlannerDbContext db;
+        private SeatingPlannerDbContext db = new SeatingPlannerDbContext(ConfigurationManager.ConnectionStrings["SeatingPlannerContext"].ConnectionString);
         
         public ActionResult Index()
         {
-            Debug.Write(ConfigurationManager.ConnectionStrings["SeatingPlannerContext"].ConnectionString);
-
-            db = new SeatingPlannerDbContext(ConfigurationManager.ConnectionStrings["SeatingPlannerContext"].ConnectionString);
-            db.Database.Initialize(false);
-
             var q = from d in db.Guests
                     select new { d.Email };
             

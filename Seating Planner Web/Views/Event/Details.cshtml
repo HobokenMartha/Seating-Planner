@@ -1,0 +1,14 @@
+﻿@model Seating_Planner_Data.Event
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+<p>Venue: @Model.Venue</p>
+<p>Budget: $@Model.Budget</p>
+<p>End Date: @Model.StartDate</p>
+<p>Start Date: @Model.EndDate</p>
+
+@Html.Partial("EventFrame")
+

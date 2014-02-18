@@ -6,11 +6,7 @@ using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using DotNetOpenAuth.AspNet;
-using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using Seating_Planner_Web.Filters;
-using Seating_Planner_Web.Models;
 using Seating_Planner_Data;
 
 namespace Seating_Planner_Web.Controllers
@@ -40,6 +36,16 @@ namespace Seating_Planner_Web.Controllers
         // GET: /Event/Details/5
 
         public ActionResult Details(int id)
+        {
+            using (db = new SeatingPlannerDbContext(ConfigurationManager.ConnectionStrings["SeatingPlannerContext"].ConnectionString))
+            {
+                Event e = db.Events.Find(id);
+
+                return View(e);
+            }
+        }
+
+        public ActionResult EventFrame(int id)
         {
             return View();
         }

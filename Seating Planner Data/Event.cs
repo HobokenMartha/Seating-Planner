@@ -17,6 +17,7 @@ namespace Seating_Planner_Data
         public double Budget { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public int createdBy { get; set; }
         public virtual List<Table> Tables { get; set; }
         public virtual List<Guest> Guests { get; set; }
     }

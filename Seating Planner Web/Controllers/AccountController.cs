@@ -14,7 +14,6 @@ using Seating_Planner_Web.Models;
 namespace Seating_Planner_Web.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //

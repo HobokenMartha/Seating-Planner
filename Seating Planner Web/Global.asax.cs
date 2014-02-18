@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Security;
+using DotNetOpenAuth.AspNet;
+using Microsoft.Web.WebPages.OAuth;
+using WebMatrix.WebData;
+using Seating_Planner_Web.Filters;
+using Seating_Planner_Web.Models;
 using Seating_Planner_Data;
 
 namespace Seating_Planner_Web
@@ -16,6 +23,10 @@ namespace Seating_Planner_Web
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private static SimpleMembershipInitializer _initializer;
+        private static object _initializerLock = new object();
+        private static bool _isInitialized;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -26,7 +37,19 @@ namespace Seating_Planner_Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            //Database.SetInitializer<SeatingPlannerDbContext>(new SeatingPlannerDbInitialiser());
+            LazyInitializer.EnsureInitialized(ref _initializer, ref _isInitialized, ref _initializerLock);
+        }
+
+        public class SimpleMembershipInitializer
+        {
+            public SimpleMembershipInitializer()
+            {
+                using (var context = new UsersContext())
+                    context.UserProfiles.Find(1);
+
+                if (!WebSecurity.Initialized)
+                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+            }
         }
     }
 }

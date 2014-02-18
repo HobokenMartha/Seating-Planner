@@ -10,23 +10,17 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		No Desktop Project|Any CPU = No Desktop Project|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C542E5BB-57D2-4313-8903-B128E79B71BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C542E5BB-57D2-4313-8903-B128E79B71BA}.No Desktop Project|Any CPU.ActiveCfg = No Desktop Project|Any CPU
 		{C542E5BB-57D2-4313-8903-B128E79B71BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00666F2D-590E-4026-8B32-7C072A8FFB38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00666F2D-590E-4026-8B32-7C072A8FFB38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00666F2D-590E-4026-8B32-7C072A8FFB38}.No Desktop Project|Any CPU.ActiveCfg = No Desktop Project|Any CPU
-		{00666F2D-590E-4026-8B32-7C072A8FFB38}.No Desktop Project|Any CPU.Build.0 = No Desktop Project|Any CPU
 		{00666F2D-590E-4026-8B32-7C072A8FFB38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00666F2D-590E-4026-8B32-7C072A8FFB38}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7CCCA33-67FA-42A1-ADBC-3B3F35881AD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7CCCA33-67FA-42A1-ADBC-3B3F35881AD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7CCCA33-67FA-42A1-ADBC-3B3F35881AD4}.No Desktop Project|Any CPU.ActiveCfg = No Desktop Project|Any CPU
-		{B7CCCA33-67FA-42A1-ADBC-3B3F35881AD4}.No Desktop Project|Any CPU.Build.0 = No Desktop Project|Any CPU
 		{B7CCCA33-67FA-42A1-ADBC-3B3F35881AD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7CCCA33-67FA-42A1-ADBC-3B3F35881AD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

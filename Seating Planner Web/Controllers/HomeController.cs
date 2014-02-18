@@ -11,18 +11,13 @@ namespace Seating_Planner_Web.Controllers
 {
     public class HomeController : Controller
     {
-        private SeatingPlannerDbContext db;
-        
         public ActionResult Index()
         {
-            using(db = new SeatingPlannerDbContext(ConfigurationManager.ConnectionStrings["SeatingPlannerContext"].ConnectionString))
-            {
-                var q = from d in db.Guests
-                    select new { d.Email };
-            }
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Dashboard");
 
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-            
+
             return View();
         }
 

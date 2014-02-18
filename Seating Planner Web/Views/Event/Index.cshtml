@@ -3,3 +3,10 @@
 }
 
 <h2>Index</h2>
+
+@Html.ActionLink("Create New Event", "Create", "Event")
+
+@foreach (var e in Model)
+{
+    <p>@e.Name</p>
+}

@@ -20,8 +20,17 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Events", "Index", "Event")</li>
+                            @if(!User.Identity.IsAuthenticated)
+                            {
+                                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                                <li>@Html.ActionLink("Events", "Index", "Event")</li>
+                                <li>@Html.ActionLink("Tables", "Index", "Table")</li>
+                                <li>@Html.ActionLink("Guests", "Index", "Guest")</li>
+                            }                            
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         </ul>
@@ -38,7 +47,7 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                    <p>&copy; @DateTime.Now.Year - Seating Planner</p>
                 </div>
             </div>
         </footer>

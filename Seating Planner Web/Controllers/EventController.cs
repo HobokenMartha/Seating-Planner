@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Transactions;
 using System.Web;
@@ -14,22 +15,19 @@ namespace Seating_Planner_Web.Controllers
     [Authorize]
     public class EventController : Controller
     {
-        private SeatingPlannerDbContext db;        
+        private SeatingPlannerDbContext db = new SeatingPlannerDbContext(ConfigurationManager.ConnectionStrings["SeatingPlannerContext"].ConnectionString);
                 
         //
         // GET: /Event/
 
         public ActionResult Index()
         {
-            using (db = new SeatingPlannerDbContext(ConfigurationManager.ConnectionStrings["SeatingPlannerContext"].ConnectionString))
-            {
-                var myEvents = from d in db.Events
-                               where d.createdBy == WebSecurity.CurrentUserId                             
-                               orderby d.Name
-                               select d;
+            var myEvents = from d in db.Events
+                            where d.createdBy == WebSecurity.CurrentUserId                             
+                            orderby d.Name
+                            select d;
 
-                return View(myEvents.ToList<Event>());
-            }
+            return View(myEvents.ToList<Event>());
         }
 
         //
@@ -37,12 +35,9 @@ namespace Seating_Planner_Web.Controllers
 
         public ActionResult Details(int id)
         {
-            using (db = new SeatingPlannerDbContext(ConfigurationManager.ConnectionStrings["SeatingPlannerContext"].ConnectionString))
-            {
-                Event e = db.Events.Find(id);
+            Event e = db.Events.Find(id);
 
-                return View(e);
-            }
+            return View(e);
         }
 
         public ActionResult EventFrame(int id)
@@ -68,11 +63,8 @@ namespace Seating_Planner_Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (db = new SeatingPlannerDbContext(ConfigurationManager.ConnectionStrings["SeatingPlannerContext"].ConnectionString))
-                    {
-                        db.Events.Add(ev);
-                        db.SaveChanges();
-                    }
+                    db.Events.Add(ev);
+                    db.SaveChanges();
                 }
 
                 return RedirectToAction("Index");
@@ -95,12 +87,17 @@ namespace Seating_Planner_Web.Controllers
         // POST: /Event/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Event ev)
         {
             try
             {
-                // TODO: Add update logic here
-
+                if (ModelState.IsValid)
+                {
+                    db.Entry(ev).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Edit", new { id = ev.EventId });
+                }
+                
                 return RedirectToAction("Index");
             }
             catch
@@ -121,11 +118,12 @@ namespace Seating_Planner_Web.Controllers
         // POST: /Event/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Event ev)
         {
             try
             {
-                // TODO: Add delete logic here
+                db.Entry(ev).State = EntityState.Deleted;
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }

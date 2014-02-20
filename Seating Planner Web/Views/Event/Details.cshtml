@@ -1,14 +1,25 @@
 ﻿@model Seating_Planner_Data.Event
 
 @{
-    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Event.cshtml";
+    ViewBag.Title = @Model.Name + " Details";
 }
+<script>
+    $(function () {
+        $("#tbl").draggable();
+    });
+</script>
 
 <h2>@Model.Name</h2>
-<p>Venue: @Model.Venue</p>
-<p>Budget: $@Model.Budget</p>
-<p>End Date: @Model.StartDate</p>
-<p>Start Date: @Model.EndDate</p>
-
-@Html.Partial("EventFrame")
+<div id="eventContentContainer">
+    <div id="leftColumn">
+        <p>Venue: @Model.Venue</p>
+        <p>Budget: $@Model.Budget</p>
+        <p>End Date: @Model.StartDate</p>
+        <p>Start Date: @Model.EndDate</p>
+    </div>
+    <div id="rightColumn">
+        <div id="tbl" class="ui-widget-content"><header>Table 1</header><p>Drag me</p></div>
+    </div>
+</div>
 

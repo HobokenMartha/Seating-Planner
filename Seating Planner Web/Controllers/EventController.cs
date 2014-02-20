@@ -80,7 +80,9 @@ namespace Seating_Planner_Web.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            Event ev = db.Events.Find(id);
+
+            return View(ev);
         }
 
         //

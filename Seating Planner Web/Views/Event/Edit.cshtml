@@ -1,0 +1,37 @@
+﻿@model Seating_Planner_Data.Event
+
+@{
+    Layout = "~/Views/Shared/_Event.cshtml";
+    ViewBag.Title = "Edit Event";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    
+    <fieldset>
+        <legend>Edit @Model.Name</legend>
+        <ol>
+            <li>@Html.LabelFor(m => m.Name)</li>
+            <li>@Html.TextBoxFor(m => m.Name)</li>
+            <li>@Html.ValidationMessageFor(m => m.Name)</li>
+            <li>@Html.LabelFor(m => m.Venue)</li>
+            <li>@Html.TextBoxFor(m => m.Venue)</li>
+            <li>@Html.ValidationMessageFor(m => m.Venue)</li>
+            <li>@Html.LabelFor(m => m.StartDate, "Start Date")</li>
+            <li>@Html.TextBoxFor(m => m.StartDate)</li>
+            <li>@Html.ValidationMessageFor(m => m.StartDate)</li>
+            <li>@Html.LabelFor(m => m.EndDate, "End Date")</li>
+            <li>@Html.TextBoxFor(m => m.EndDate)</li>
+            <li>@Html.ValidationMessageFor(m => m.EndDate)</li>
+            <li>@Html.LabelFor(m => m.Budget)</li>
+            <li>@Html.TextBoxFor(m => m.Budget)</li>
+            <li>@Html.ValidationMessageFor(m => m.Budget)</li>
+        </ol>
+        <p><input type="submit" value="Edit" /></p>
+    </fieldset>
+
+
+}

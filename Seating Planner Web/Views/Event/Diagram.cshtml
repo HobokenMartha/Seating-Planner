@@ -2,24 +2,33 @@
     Layout = "~/Views/Shared/_Diagram.cshtml";    
 }
 
+<style>
+    #cont {
+        top:20%;
+        width:100%;
+    }
+</style>
+
 @section scripts{
     <script>
         $(function () {
-            $("#draggable").draggable({
-                stop: function (event, ui) { test(this) }
+            $("#tbl").draggable({
+                stop: function (event, ui) { test(this) },
+                containment: "#tabs", scroll:false
 
             });
         });
 
         function test(element){
             var ret = getPosition(element);
-            alert(ret);
+            //alert(ret);
         };
   </script>
 
 }
 
 <h2>Diagram</h2>
-<div id="draggable" class="ui-widget-content">
+<div id="tbl">
+    <header>Table 1</header>
     <p>There is currently nothing to display in this tab.</p>
 </div>

@@ -14,8 +14,5 @@ namespace Seating_Planner_Data
         public int TableId { get; set; }
         public string Name { get; set; }
         public int Capacity { get; set; }
-
-        public int EventId { get; set; }
-        public virtual List<Guest> AssignedGuests { get; set; }
     }
 }

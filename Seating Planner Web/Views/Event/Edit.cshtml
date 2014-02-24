@@ -9,7 +9,8 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    
+    @Html.Hidden("EventId", @Model.EventId)
+    @Html.Hidden("CreatedBy", @Model.createdBy)
     
     <fieldset>
         <legend>Edit @Model.Name</legend>
@@ -32,6 +33,4 @@
         </ol>
         <p><input type="submit" value="Edit" /></p>
     </fieldset>
-
-
 }

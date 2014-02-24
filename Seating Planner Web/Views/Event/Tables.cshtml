@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Tables";
+    Layout = null;
+}
+
+<h2>Tables</h2>
+
+@foreach (var t in Model)
+{
+    <p>@Html.ActionLink((string)@t.Name, "Details", "Table", new { id = @t.TableId }, null) (@t.Capacity pax)</p>
+}

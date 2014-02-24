@@ -16,5 +16,7 @@ namespace Seating_Planner_Data
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
+        public int CreatedBy { get; set; }
+        public DateTime DateTimeCreated { get; set; }
     }
 }

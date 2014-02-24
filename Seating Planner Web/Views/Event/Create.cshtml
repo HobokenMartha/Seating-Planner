@@ -1,7 +1,7 @@
 ﻿@model Seating_Planner_Data.Event
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create New Event";
 }
 
 <h2>Create New Event</h2>
@@ -10,14 +10,12 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-
+    @Html.Hidden("createdBy", WebSecurity.CurrentUserId)
+    
     <fieldset>
         <legend>Create New Event</legend>
-
-        @Html.Hidden("createdBy", WebSecurity.CurrentUserId)
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.Name, "Name")
+            @Html.LabelFor(model => model.Name, "Event Name")
         </div>
         <div class="editor-field">
             @Html.TextBox("name", string.Empty)
@@ -39,7 +37,6 @@
             @Html.TextBox("startdate", string.Empty)
             @Html.ValidationMessageFor(model => model.StartDate)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.EndDate, "End Date")
         </div>
@@ -47,7 +44,6 @@
             @Html.TextBox("enddate", string.Empty)
             @Html.ValidationMessageFor(model => model.EndDate)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Budget, "Budget")
         </div>
@@ -55,13 +51,8 @@
             @Html.TextBox("budget", string.Empty)
             @Html.ValidationMessageFor(model => model.Budget)
         </div>
-
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Create" /> <input type="button" value="Cancel" onclick="javascript: history.back(-1);" />
         </p>
-
     </fieldset>
-
-
-
 }

@@ -97,7 +97,7 @@ namespace Seating_Planner_Web.Controllers
                 {
                     db.Entry(ev).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Edit", new { id = ev.EventId });
+                    return RedirectToAction("Details", new { id = ev.EventId });
                 }
                 
                 return RedirectToAction("Index");
@@ -133,6 +133,38 @@ namespace Seating_Planner_Web.Controllers
             {
                 return View();
             }
+        }
+
+        //
+        // GET: /Event/Tables/5
+
+        public ActionResult Tables(int id)
+        {
+            var t = from tb in db.Tables
+                    join et in db.EventTables on tb.TableId equals et.TableId
+                    join ev in db.Events on et.EventId equals ev.EventId
+                    where et.EventId == id
+                    select tb;
+
+            return View(t.ToList<Table>());
+        }
+
+        //
+        // GET: /Event/Guests/5
+
+        public ActionResult Guests(int id)
+        {
+            var g = from gst in db.Guests
+                    join eg in db.EventGuests on gst.GuestId equals eg.GuestId
+                    where eg.EventId == id
+                    select gst;
+
+            return View(g.ToList<Guest>());
+        }
+
+        public ActionResult Diagram(int id)
+        {
+            return PartialView();
         }
     }
 }

@@ -1,0 +1,8 @@
+﻿@model Seating_Planner_Data.Guest
+
+@{
+    ViewBag.Title = @Model.FirstName + " " + @Model.Surname + " Details";
+}
+
+<p>@Model.Title @Model.FirstName @Model.Surname</p>
+<p><a href="mailto:@Model.Email">@Model.Email</a></p>

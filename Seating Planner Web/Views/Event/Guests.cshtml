@@ -1,0 +1,9 @@
+﻿@{
+    Layout = null;
+}
+<h2>Guests</h2>
+
+@foreach (var m in Model)
+{
+    <p>@Html.ActionLink((string)m.FirstName + " " + (string)@m.Surname, "Details", "Guest", new { id = @m.GuestId }, null)</p>
+}

@@ -4,22 +4,38 @@
     Layout = "~/Views/Shared/_Event.cshtml";
     ViewBag.Title = @Model.Name + " Details";
 }
-<script>
-    $(function () {
-        $("#tbl").draggable();
-    });
-</script>
 
-<h2>@Model.Name</h2>
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("#tabs").tabs({
+                beforeLoad: function (event, ui) {
+                    ui.jqXHR.error(function () {
+                        ui.panel.html(
+                          "There was a problem loading this tab.");
+                    });
+                }
+            });
+        });
+    </script>
+}
 <div id="eventContentContainer">
-    <div id="leftColumn">
-        <p>Venue: @Model.Venue</p>
-        <p>Budget: $@Model.Budget</p>
-        <p>End Date: @Model.StartDate</p>
-        <p>Start Date: @Model.EndDate</p>
-    </div>
-    <div id="rightColumn">
-        <div id="tbl" class="ui-widget-content"><header>Table 1</header><p>Drag me</p></div>
+    <h2>@Model.Name</h2>
+    <h3>@Model.Venue</h3>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Details</a></li>
+            <li><a href="/Event/Tables/@Model.EventId">Tables</a></li>
+            <li><a href="/Event/Guests/@Model.EventId">Guests</a></li>
+            <li><a href="/Event/Diagram/@Model.EventId">Diagram</a></li>
+        </ul>
+        <div id="tabs-1">
+            <h2>Details</h2>
+            <p><strong>Budget:</strong> $@Model.Budget</p>
+            <p><strong>End Date:</strong> @Model.StartDate</p>
+            <p><strong>Start Date:</strong> @Model.EndDate</p>
+            <p>@Html.ActionLink("Edit", "Edit", new {id = @Model.EventId})</p>
+        </div>
     </div>
 </div>
 

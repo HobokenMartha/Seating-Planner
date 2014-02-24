@@ -397,15 +397,23 @@ aside {
 /* Event Details Page */
 
 #eventContentContainer {
-    float:left;
-    width:100%;
+    width:95%;
     display:table;
     min-height:400px;
+    margin:0 auto;
 }
 
 #leftColumn {
-    width:20%;
+    margin-left:10px;
+    width:15%;
     background-color:bisque;
+    display:table-cell;
+    vertical-align:top;
+}
+
+#rightColumn {
+    width:85%;
+    background-color:beige;
     display:table-cell;
     vertical-align:top;
 }
@@ -449,13 +457,6 @@ aside {
     -ms-border-top-right-radius: 10px;
     -moz-border-radius-topright: 10px;
     border-top-right-radius: 10px;
-}
-
-#rightColumn {
-    width:80%;
-    background-color:beige;
-    display:table-cell;
-    vertical-align:top;
 }
 
 

@@ -1,2 +1,25 @@
-﻿<h2>Diagram</h2>
-<p>There is currently nothing to display in this tab.</p>
+﻿@{
+    Layout = "~/Views/Shared/_Diagram.cshtml";    
+}
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#draggable").draggable({
+                stop: function (event, ui) { test(this) }
+
+            });
+        });
+
+        function test(element){
+            var ret = getPosition(element);
+            alert(ret);
+        };
+  </script>
+
+}
+
+<h2>Diagram</h2>
+<div id="draggable" class="ui-widget-content">
+    <p>There is currently nothing to display in this tab.</p>
+</div>

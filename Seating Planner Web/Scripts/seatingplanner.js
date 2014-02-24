@@ -26,5 +26,5 @@ function getPosition(element) {
         element = element.offsetParent;
     }
 
-    return [ x, y ];
+    return [x, y];
 }

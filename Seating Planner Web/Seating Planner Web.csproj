@@ -334,6 +334,8 @@
     <Content Include="Views\Guest\Details.cshtml" />
     <Content Include="Views\Table\Details.cshtml" />
     <Content Include="Views\Shared\_Diagram.cshtml" />
+    <Content Include="Views\Table\Create.cshtml" />
+    <Content Include="Views\Guest\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -25,7 +25,5 @@ namespace Seating_Planner_Data
         public DbSet<Event> Events {get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<Guest> Guests { get; set; }
-        public DbSet<EventGuests> EventGuests { get; set; }
-        public DbSet<EventTables> EventTables { get; set; }
     }
 }

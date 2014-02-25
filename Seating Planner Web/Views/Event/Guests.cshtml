@@ -5,5 +5,9 @@
 
 @foreach (var m in Model)
 {
-    <p>@Html.ActionLink((string)m.FirstName + " " + (string)@m.Surname, "Details", "Guest", new { id = @m.GuestId }, null)</p>
+    <p>@Html.ActionLink("Create New Guest", "Create", "Guest", new { id = @m.EventId }, null)</p>
+    foreach(var g in m.Guests)
+    {
+        <p>@Html.ActionLink((string)g.FirstName + " " + (string)@g.Surname, "Details", "Guest", new { id = @g.GuestId }, null)</p>
+    }
 }

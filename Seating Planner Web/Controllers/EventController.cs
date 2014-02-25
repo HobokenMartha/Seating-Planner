@@ -140,13 +140,11 @@ namespace Seating_Planner_Web.Controllers
 
         public ActionResult Tables(int id)
         {
-            var t = from tb in db.Tables
-                    join et in db.EventTables on tb.TableId equals et.TableId
-                    join ev in db.Events on et.EventId equals ev.EventId
-                    where et.EventId == id
-                    select tb;
+            var t = from e in db.Events
+                    where e.EventId == id
+                    select e;
 
-            return View(t.ToList<Table>());
+            return View(t.ToList<Event>());
         }
 
         //
@@ -154,17 +152,20 @@ namespace Seating_Planner_Web.Controllers
 
         public ActionResult Guests(int id)
         {
-            var g = from gst in db.Guests
-                    join eg in db.EventGuests on gst.GuestId equals eg.GuestId
-                    where eg.EventId == id
-                    select gst;
+            var t = from e in db.Events
+                    where e.EventId == id
+                    select e;
 
-            return View(g.ToList<Guest>());
+            return View(t.ToList<Event>());
         }
 
         public ActionResult Diagram(int id)
         {
-            return PartialView();
+            var e = from ev in db.Events
+                    where ev.EventId == id
+                    select ev;
+
+            return PartialView(e.ToList<Event>());
         }
     }
 }

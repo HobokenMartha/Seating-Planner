@@ -5,7 +5,11 @@
 
 <h2>Tables</h2>
 
-@foreach (var t in Model)
+@foreach (var m in Model)
 {
-    <p>@Html.ActionLink((string)@t.Name, "Details", "Table", new { id = @t.TableId }, null) (@t.Capacity pax)</p>
+    @Html.ActionLink("Create New Table", "Create", "Table", new { id = @m.EventId }, null);
+    foreach(var t in m.Tables)
+    {
+        <p>@Html.ActionLink((string)@t.Name, "Details", "Table", new { id = @t.TableId }, null) (@t.Capacity pax)</p>
+    }
 }

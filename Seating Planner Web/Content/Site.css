@@ -418,7 +418,7 @@ aside {
     vertical-align:top;
 }
 
-#tbl {
+.tbl {
     height: 150px;
     width: 150px;
     float: left;
@@ -436,7 +436,7 @@ aside {
     cursor: move;
 }
 
-#tbl header {
+.tbl header {
     color: #FFFFFF;
     text-shadow: #000 0 1px;
     box-shadow: 5px;

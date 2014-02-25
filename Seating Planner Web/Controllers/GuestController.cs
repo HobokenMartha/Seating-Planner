@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Seating_Planner_Data;
+using WebMatrix.WebData;
 
 namespace Seating_Planner_Web.Controllers
 {
@@ -33,8 +36,9 @@ namespace Seating_Planner_Web.Controllers
         //
         // GET: /Guest/Create
 
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            ViewData["EventId"] = id;
             return View();
         }
 
@@ -42,11 +46,17 @@ namespace Seating_Planner_Web.Controllers
         // POST: /Guest/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Guest guest)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    guest.CreatedBy = WebSecurity.CurrentUserId;
+                    guest.DateTimeCreated = DateTime.Now;
+                    db.Guests.Add(guest);
+                    db.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
             }
@@ -68,11 +78,15 @@ namespace Seating_Planner_Web.Controllers
         // POST: /Guest/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Guest guest)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    db.Entry(guest).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
             }
@@ -94,11 +108,15 @@ namespace Seating_Planner_Web.Controllers
         // POST: /Guest/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Guest guest)
         {
             try
             {
-                // TODO: Add delete logic here
+                if (ModelState.IsValid)
+                {
+                    db.Entry(guest).State = EntityState.Deleted;
+                    db.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
             }

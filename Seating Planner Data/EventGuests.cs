@@ -10,10 +10,10 @@ namespace Seating_Planner_Data
 {
     public class EventGuests
     {
-        [Key]
+        /*[Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int EventGuestsId { get; set; }
         public int EventId { get; set; }
-        public int GuestId { get; set; }
+        public int GuestId { get; set; }*/
     }
 }

@@ -1,0 +1,34 @@
+﻿@model Seating_Planner_Data.Table
+
+@{
+    ViewBag.Title = "Create New Table";
+}
+
+<h2>Create New Table</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Create New Table</legend>
+        @Html.Hidden("EventId", ViewData["EventId"]);
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name, "Table Name")
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("name", string.Empty)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Capacity, "Capacity")
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("venue", string.Empty)
+            @Html.ValidationMessageFor(model => model.Capacity)
+        </div>
+        <p>
+            <input type="submit" value="Create" /> <input type="button" value="Cancel" onclick="javascript: history.back(-1);" />
+        </p>
+    </fieldset>
+}

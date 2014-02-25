@@ -13,10 +13,14 @@ namespace Seating_Planner_Data
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int GuestId { get; set; }
         public string Title { get; set; }
+        [Required(ErrorMessage="A first name is required")] 
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "A surname is required")] 
         public string Surname { get; set; }
+        [DataType(DataType.EmailAddress, ErrorMessage="Email address is not valid")]
         public string Email { get; set; }
         public int CreatedBy { get; set; }
+        [DataType(DataType.DateTime, ErrorMessage="Incorrect DateTime format entered")]
         public DateTime DateTimeCreated { get; set; }
     }
 }

@@ -1,0 +1,45 @@
+﻿@model Seating_Planner_Data.Guest
+
+@{
+    ViewBag.Title = "Create New Guest";
+}
+
+<h2>Create Guest</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Create new Guest</legend>
+        @Html.Hidden("EventId", ViewData["EventId"])
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title, "Title")
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("Title", string.Empty)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName, "FirstName")
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("FirstName", string.Empty)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Surname, "Surname")
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("Surname", string.Empty)
+            @Html.ValidationMessageFor(model => model.Surname)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email, "Email Address")
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("Email", string.Empty)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+    </fieldset>
+}

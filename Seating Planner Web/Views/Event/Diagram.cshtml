@@ -12,7 +12,7 @@
 @section scripts{
     <script>
         $(function () {
-            $("#tbl").draggable({
+            $(".tbl").draggable({
                 stop: function (event, ui) { test(this) },
                 containment: "#tabs", scroll:false
 
@@ -28,7 +28,15 @@
 }
 
 <h2>Diagram</h2>
-<div id="tbl">
-    <header>Table 1</header>
-    <p>There is currently nothing to display in this tab.</p>
-</div>
+
+@foreach (var m in Model)
+{
+    foreach (var t in m.Tables)
+    {
+        <div id="tbl-@t.TableId" class="tbl">
+            <header>@t.Name</header>
+        <p>There is currently nothing to display in this tab.</p>
+        </div>
+    } 
+}
+

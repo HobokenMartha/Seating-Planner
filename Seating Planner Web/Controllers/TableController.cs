@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Seating_Planner_Data;
 using WebMatrix.WebData;
 
@@ -33,9 +35,10 @@ namespace Seating_Planner_Web.Controllers
 
         //
         // GET: /Table/Create
-
-        public ActionResult Create()
+        // id: The Event ID
+        public ActionResult Create(int id)
         {
+            ViewData["EventId"] = id;
             return View();
         }
 
@@ -47,7 +50,11 @@ namespace Seating_Planner_Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    db.Tables.Add(table);
+                    db.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
             }
@@ -73,7 +80,11 @@ namespace Seating_Planner_Web.Controllers
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    db.Entry(table).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
 
                 return RedirectToAction("Index");
             }
